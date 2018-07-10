@@ -51,6 +51,8 @@ a:hover, a:focus, a.active {
 .tm-site-description {
     font-size: 1.6rem;
     color: white;
+    text-shadow: 0 1px #2f2f2f;
+    font-weight: bold;
 }
 
 .navbar-expand-sm .navbar-nav .nav-link { padding: 10px 20px; }
@@ -283,7 +285,7 @@ figure.effect-sadie:hover p {
 
 .tm-font-300 { font-weight: 300; }
 .tm-text-gray, .tm-link-gray { color: #666666; }
-.tm-text-white { color: #fff; }
+.tm-text-white { color: #cafafb; }
 .tm-text-blue { color: #6e9ece; }
 .tm-text-blue-dark { color: #006699; }
 .tm-text-pink { color: #D6688F; }
