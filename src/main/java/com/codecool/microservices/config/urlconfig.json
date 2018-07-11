@@ -1,0 +1,9 @@
+{
+  "wishlistroute": "https://cart-wishlist-vhs.herokuapp.com/wishlist",
+  "orderroute": "www.kaki.hu/",
+  "ewalletroute": "www.kaki.hu/",
+  "cartroute": "https://cart-wishlist-vhs.herokuapp.com/cart",
+  "presentroute": "www.kaki.hu/",
+  "communicationroute": "www.kaki.hu/",
+  "userroute": "www.kaki.hu/"
+}
