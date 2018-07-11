@@ -5,17 +5,15 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 
-import java.io.FileReader;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.Iterator;
 
 @Component
 public class JsonUtil {
     private JSONParser parser = new JSONParser();
 
-    public JSONObject getJson(String path){
+    public JSONObject getJson(String path) {
         try {
             Object obj = parser.parse(new FileReader(
                     path));
@@ -36,14 +34,11 @@ public class JsonUtil {
     }
 
     public org.json.JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
-        try {
+        try (InputStream is = new URL(url).openStream()) {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
             org.json.JSONObject json = new org.json.JSONObject(jsonText);
             return json;
-        } finally {
-            is.close();
         }
     }
 }
