@@ -874,3 +874,7 @@ iframe { max-width: 100%; }
     .tm-site-name { font-size: 2.4rem; }
     .tm-site-description { font-size: 1.2rem; }
 }
+
+.profile {
+    margin-top: 30px;
+}
