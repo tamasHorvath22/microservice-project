@@ -1,5 +1,6 @@
 package com.codecool.microservices.utility;
 
+import com.sun.mail.iap.Protocol;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -7,9 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Iterator;
@@ -58,6 +57,22 @@ public class JsonUtil {
             new BufferedReader(new InputStreamReader(con.getInputStream()));
         }
         catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void sendPutRequest(String url, String content){
+        try {
+            URL urlThing = new URL(url);
+            HttpURLConnection httpCon = (HttpURLConnection) urlThing.openConnection();
+            httpCon.setDoOutput(true);
+            httpCon.setRequestMethod("PUT");
+            OutputStreamWriter out = new OutputStreamWriter(
+                    httpCon.getOutputStream());
+            out.write(content);
+            out.close();
+            httpCon.getInputStream();
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
