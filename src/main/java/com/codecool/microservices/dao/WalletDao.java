@@ -1,9 +1,11 @@
 package com.codecool.microservices.dao;
 
 import com.codecool.microservices.model.Wallet;
+import com.codecool.microservices.utility.JsonUtil;
 import com.codecool.microservices.utility.UrlParser;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.io.IOException;
 
 public class WalletDao {
 
@@ -14,7 +16,7 @@ public class WalletDao {
     private UrlParser urlParser;
 
     @Autowired
-    private Util util;
+    private JsonUtil jsonUtil;
 
     public Wallet getWallet() {
         getJson();
@@ -23,7 +25,11 @@ public class WalletDao {
     }
 
     private void getJson() {
-        walletJson = util.getJson(urlParser.getEwalletRoute());
+        try {
+            walletJson = jsonUtil.readJsonFromUrl(urlParser.getEwalletRoute());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createWalletObject() {
