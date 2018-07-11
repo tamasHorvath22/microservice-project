@@ -5,12 +5,9 @@ import com.codecool.microservices.utility.JsonUtil;
 import com.codecool.microservices.utility.UrlParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -66,6 +63,14 @@ public class PresentDao {
             }
         }
         return list;
+    }
+
+    public void removePresent(String route) {
+        jsonUtil.sendDeleteRequest(urlParser.getPresentRoute() + route);
+    }
+
+    public void modifyPresent(String route, Present present) {
+        jsonUtil.sendPutRequest(urlParser.getPresentRoute()+route, present.toString());
     }
 
     public Present getPresent(String route) throws ParseException{
