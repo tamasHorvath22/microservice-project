@@ -34,7 +34,7 @@ public class CartDao {
         List<Long> presentIds = new ArrayList<>();
         JSONArray jsonArray = (JSONArray) cartJSON.get("presentIds");
         if (jsonArray != null) {
-            jsonArray.forEach(presentId -> presentIds.add((long) presentId));
+            jsonArray.forEach(presentId -> presentIds.add(Long.parseLong(String.valueOf(presentId))));
         }
         return new Cart(id, presentIds);
     }
