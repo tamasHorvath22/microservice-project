@@ -107,5 +107,21 @@ public class JsonUtil {
         }
     }
 
+    public void sendPutRequest(String url, String content){
+        try {
+            URL urlThing = new URL(url);
+            HttpURLConnection httpCon = (HttpURLConnection) urlThing.openConnection();
+            httpCon.setDoOutput(true);
+            httpCon.setRequestMethod("PUT");
+            OutputStreamWriter out = new OutputStreamWriter(
+                    httpCon.getOutputStream());
+            out.write(content);
+            out.close();
+            httpCon.getInputStream();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
 }
