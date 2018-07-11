@@ -878,3 +878,11 @@ iframe { max-width: 100%; }
 .profile {
     margin-top: 30px;
 }
+
+.wishlist-container img {
+    width: 100px;
+}
+
+.tm-description-box {
+    width: 450px;
+}
