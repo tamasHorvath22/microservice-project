@@ -6,24 +6,39 @@ public class Present {
 
     private int id;
     private String name;
+    private String description;
     private double price;
 
     private String category;
     private boolean available;
     private int ownerId;
+    private String imageUrl;
     private Date timestamp;
 
-    public Present(int id, String name, double price, String category, boolean available, int ownerId, Date timestamp) {
+    public Present(int id, String name, String description, double price, String category, boolean available, int ownerId, String imageUrl,Date timestamp) {
         this.id = id;
         this.name = name;
+        this.price = price;
+        this.description = description;
+        this.category = category;
+        this.available = available;
+        this.ownerId = ownerId;
+        this.imageUrl = imageUrl;
+        this.timestamp = timestamp;
+    }
+
+    public Present(String name, String description, double price, String category, boolean available, int ownerId, String imageUrl, Date timestamp) {
+        this.name = name;
+        this.description = description;
         this.price = price;
         this.category = category;
         this.available = available;
         this.ownerId = ownerId;
+        this.imageUrl = imageUrl;
         this.timestamp = timestamp;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -45,5 +60,28 @@ public class Present {
 
     public int getOwnerId() {
         return ownerId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Present{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", available=" + available +
+                ", ownerId=" + ownerId +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
     }
 }

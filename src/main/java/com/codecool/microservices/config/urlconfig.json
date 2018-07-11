@@ -3,7 +3,7 @@
   "orderroute": "www.kaki.hu/",
   "ewalletroute": "www.kaki.hu/",
   "cartroute": "https://cart-wishlist-vhs.herokuapp.com/cart",
-  "presentroute": "www.kaki.hu/",
+  "presentroute": "https://present-wishlist-poop.herokuapp.com/present/",
   "communicationroute": "www.kaki.hu/",
   "userroute": "www.kaki.hu/"
 }
