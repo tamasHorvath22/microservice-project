@@ -44,4 +44,16 @@ public class CartDao {
         return makeCartFromJson();
     }
 
+    public void addToCart(long userId, long presentId) {
+        String urlParameters = "?userId=" + userId + "&presentId=" + presentId;
+        jsonUtil.sendPostRequest(urlParser.getCartRoute(), urlParameters);
+    }
+
+    public void removeFromCart(long userId, long presentId) {
+        String url = urlParser.getCartRoute() + "?userId=" + userId + "&presentId=" + presentId;
+        jsonUtil.sendDeleteRequest(url);
+    }
+
+
+
 }

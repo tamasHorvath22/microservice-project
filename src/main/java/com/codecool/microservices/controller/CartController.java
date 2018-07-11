@@ -19,21 +19,21 @@ public class CartController {
     @GetMapping("/cart")
     public String showCart(@SessionAttribute("user") User user, Model model) {
         long userId = user.getId();
-        model.addAttribute("presents", cartService.getPresentsInCart(cartService.getById(userId)));
+        model.addAttribute("presents", cartService.getPresentsInCart(cartService.getCart(userId)));
         return CART_PAGE;
     }
 
     @PostMapping("/add-to-cart")
     public String addToCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) {
         long userId = user.getId();
-        cartService.add(userId, presentId);
+        cartService.addToCart(userId, presentId);
         return MAIN_PAGE;
     }
 
     @DeleteMapping("/remove-from-cart")
     public String removeFromCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) {
         long userId = user.getId();
-        cartService.remove(userId, presentId);
+        cartService.removeFromCart(userId, presentId);
         return CART_PAGE;
     }
 

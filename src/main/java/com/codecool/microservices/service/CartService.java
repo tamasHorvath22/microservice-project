@@ -15,27 +15,9 @@ import java.util.List;
 public class CartService {
 
     @Autowired
-    private JsonUtil jsonUtil;
-    @Autowired
-    private UrlParser urlParser;
-    @Autowired
     private CartDao cartDao;
     @Autowired
     private PresentService presentService;
-
-    public void add(long userId, long presentId) {
-        String urlParameters = "?userId=" + userId + "&presentId=" + presentId;
-        jsonUtil.sendPostRequest(urlParser.getCartRoute(), urlParameters);
-    }
-
-    public void remove(long userId, long presentId) {
-        String url = urlParser.getCartRoute() + "?userId=" + userId + "&presentId=" + presentId;
-        jsonUtil.sendDeleteRequest(url);
-    }
-
-    public Cart getById(long userId) {
-        return cartDao.getCart(userId);
-    }
 
     public List<Present> getPresentsInCart(Cart cart) {
         List<Present> presents = new ArrayList<>();
@@ -43,4 +25,15 @@ public class CartService {
         return presents;
     }
 
+    public void addToCart(long userId, long presentId) {
+        cartDao.addToCart(userId, presentId);
+    }
+
+    public void removeFromCart(long userId, long presentId) {
+        cartDao.removeFromCart(userId, presentId);
+    }
+
+    public Cart getCart(long userId) {
+        return cartDao.getCart(userId);
+    }
 }
