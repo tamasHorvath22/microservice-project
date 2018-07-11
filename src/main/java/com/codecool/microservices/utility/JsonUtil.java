@@ -98,7 +98,7 @@ public class JsonUtil {
             //Send request
             DataOutputStream wr = new DataOutputStream (
                     connection.getOutputStream());
-            wr.write(urlParameters.getBytes());
+            wr.writeBytes(urlParameters);
             wr.close();
 
             //Get Response
@@ -141,7 +141,7 @@ public class JsonUtil {
             connection.setDoOutput(true);
 
             //Send request
-            DataOutputStream wr = new DataOutputStream (
+            DataOutputStream wr = new DataOutputStream(
                     connection.getOutputStream());
             wr.write(urlParameters.getBytes());
             wr.close();
