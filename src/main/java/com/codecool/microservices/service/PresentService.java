@@ -16,8 +16,8 @@ public class PresentService {
         this.presentDao = presentDao;
     }
 
-    public void addPresent() {
-
+    public void addPresent(Present present) {
+        presentDao.addPresent("", present);
     }
 
     public void removePresent(long presentId) {
