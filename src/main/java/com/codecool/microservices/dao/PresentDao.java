@@ -54,7 +54,7 @@ public class PresentDao {
         getPresentJson(route);
         List<Present> list = new ArrayList<>();
         System.out.println(presentJSON.toString());
-        JSONArray jsonArray = (JSONArray)presentJSON.get("presentList");
+        JSONArray jsonArray = (JSONArray)presentJSON.get("presents");
         if (jsonArray != null) {
             int len = jsonArray.length();
             for (int i=0;i<len;i++){
@@ -69,7 +69,7 @@ public class PresentDao {
         jsonUtil.sendDeleteRequest(urlParser.getPresentRoute() + route);
     }
 
-    public void modifyPresent(String route, Present present) {
+    public void modifyPresent(String route,long presentId, Present present) {
         jsonUtil.sendPutRequest(urlParser.getPresentRoute()+route, present.toString());
     }
 
