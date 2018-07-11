@@ -46,4 +46,17 @@ public class Present {
     public int getOwnerId() {
         return ownerId;
     }
+
+    @Override
+    public String toString() {
+        return "Present{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", available=" + available +
+                ", ownerId=" + ownerId +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }
