@@ -9,11 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -35,20 +31,12 @@ public class CartDao {
 
     private Cart makeCartFromJson() {
         long id = cartJSON.getLong("userId");
-        List<Long> presents = new ArrayList<>();
+        List<Long> presentIds = new ArrayList<>();
         JSONArray jsonArray = (JSONArray) cartJSON.get("presentIds");
         if (jsonArray != null) {
-            jsonArray.forEach(presentId -> presents.add((long) presentId));
+            jsonArray.forEach(presentId -> presentIds.add((long) presentId));
         }
-        String dateString = cartJSON.getString("timestamp");
-        DateFormat df = new SimpleDateFormat("YYYY-mm-dd");
-        Date timestamp = null;
-        try {
-            timestamp = df.parse(dateString);
-        } catch (ParseException e) {
-            System.out.println("Wrong timestamp format...");
-        }
-        return new Cart(id, presents, timestamp);
+        return new Cart(id, presentIds);
     }
 
     public Cart getCart(long userId) {

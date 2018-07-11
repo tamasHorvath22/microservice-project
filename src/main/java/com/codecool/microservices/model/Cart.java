@@ -1,30 +1,23 @@
 package com.codecool.microservices.model;
 
-import java.util.Date;
 import java.util.List;
 
 public class Cart {
 
     private long userId;
-    private List<Long> presents;
-    private Date timeOfModification;
+    private List<Long> presentIds;
 
-    public Cart(long userId, List<Long> presents, Date timeOfModification) {
+    public Cart(long userId, List<Long> presentIds) {
         this.userId = userId;
-        this.presents = presents;
-        this.timeOfModification = timeOfModification;
+        this.presentIds = presentIds;
     }
 
     public long getUserId() {
         return userId;
     }
 
-    public List<Long> getPresents() {
-        return presents;
-    }
-
-    public Date getTimeOfModification() {
-        return timeOfModification;
+    public List<Long> getPresentIds() {
+        return presentIds;
     }
 
 }

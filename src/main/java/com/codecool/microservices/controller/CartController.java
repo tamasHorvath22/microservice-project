@@ -19,7 +19,7 @@ public class CartController {
     @GetMapping("/cart")
     public String showCart(@SessionAttribute("user") User user, Model model) {
         long userId = user.getId();
-        model.addAttribute("cart", cartService.getById(userId));
+        model.addAttribute("presents", cartService.getPresentsInCart(cartService.getById(userId)));
         return CART_PAGE;
     }
 
