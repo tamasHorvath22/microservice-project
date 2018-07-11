@@ -5,5 +5,5 @@
   "cartroute": "https://cart-wishlist-vhs.herokuapp.com/cart",
   "presentroute": "www.kaki.hu/",
   "communicationroute": "www.kaki.hu/",
-  "userroute": "www.kaki.hu/"
+  "userroute": "https://present-wishlist-poop.herokuapp.com/present/"
 }
