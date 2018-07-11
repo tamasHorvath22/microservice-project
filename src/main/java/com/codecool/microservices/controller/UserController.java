@@ -38,7 +38,10 @@ public class UserController {
 
     @PostMapping(value = "/login")
     public String login(@RequestParam("login_email") String email,
-                        @RequestParam("login_password") String password) {
+                        @RequestParam("login_password") String password,
+                        Model model) {
+        User user = userService.login(email, password);
+        model.addAttribute("user", user);
         return loginHTML;
     }
 
@@ -47,7 +50,9 @@ public class UserController {
                                @RequestParam("reg_password") String password,
                                @RequestParam("first_name") String firstName,
                                @RequestParam("last_name") String lastName,
+                               @RequestParam("address") String address,
                                @RequestParam("phone_number") String phoneNumber){
+        User user = userService.registration(email, password, firstName, lastName, address, phoneNumber);
         return loginHTML;
     }
 
