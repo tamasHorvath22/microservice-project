@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class CartController {
 
     private final static String MAIN_PAGE = "index";
-    private final static String CART_PAGE = "index";
+    private final static String CART_PAGE = "cart";
 
     @Autowired
     private CartService cartService;
