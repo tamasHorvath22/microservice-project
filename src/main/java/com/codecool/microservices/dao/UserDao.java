@@ -30,19 +30,21 @@ public class UserDao {
         this.jsonUtil = jsonUtil;
     }
 
-    public User login(String email, String password){
+    public User login(String email){
         try {
             String urlParameters =
-                    "email=" + URLEncoder.encode(email, "UTF-8") +
-                            "&password=" + URLEncoder.encode(password, "UTF-8");
+                    "email=" + URLEncoder.encode(email, "UTF-8");
             JSONObject response = new JSONObject(jsonUtil.sendPostRequest(urlParser.getUserRoute() + "/login", urlParameters));
             long id = response.getLong("id");
             String firstName = response.getString("firstName");
             String lastName = response.getString("lastName");
             String emailAddress = response.getString("email");
+            String password = response.getString("password");
             String address = response.getString("address");
             String phoneNumber = response.getString("phoneNumber");
-            return new User(id, firstName, lastName, emailAddress, address, phoneNumber);
+            User user = new User(id, firstName, lastName, emailAddress, address, phoneNumber);
+            user.setPassword(password);
+            return user;
         }
         catch (UnsupportedEncodingException ex){
             ex.printStackTrace();
@@ -50,28 +52,15 @@ public class UserDao {
         }
     }
 
-    public User registration(String email, String password, String firstName, String lastName, String address, String phoneNumber){
-        try {
-            String urlParameters =
-                    "email=" + URLEncoder.encode(email, "UTF-8") +
-                    "&password=" + URLEncoder.encode(password, "UTF-8") +
-                    "&firstName=" + URLEncoder.encode(firstName, "UTF-8") +
-                    "&lastName=" + URLEncoder.encode(lastName, "UTF-8") +
-                    "&address=" + URLEncoder.encode(address, "UTF-8") +
-                    "&phoneNumber=" + URLEncoder.encode(phoneNumber, "UTF-8");
-            JSONObject response = new JSONObject(jsonUtil.sendPostRequest(urlParser.getWishlistRoute() + "/registration",urlParameters));
-            long id = response.getLong("id");
-            firstName = response.getString("firstName");
-            lastName = response.getString("lastName");
-            email = response.getString("email");
-            address = response.getString("address");
-            phoneNumber = response.getString("phoneNumber");
-            return new User(id, firstName, lastName, email, address, phoneNumber);
-        }
-        catch (UnsupportedEncodingException ex){
-            ex.printStackTrace();
-            return null;
-        }
+    public void registration(String email, String password, String firstName, String lastName, String address, String phoneNumber) throws UnsupportedEncodingException{
+        String urlParameters =
+                "email=" + URLEncoder.encode(email, "UTF-8") +
+                "&password=" + URLEncoder.encode(password, "UTF-8") +
+                "&firstName=" + URLEncoder.encode(firstName, "UTF-8") +
+                "&lastName=" + URLEncoder.encode(lastName, "UTF-8") +
+                "&address=" + URLEncoder.encode(address, "UTF-8") +
+                "&phoneNumber=" + URLEncoder.encode(phoneNumber, "UTF-8");
+        new JSONObject(jsonUtil.sendPostRequest(urlParser.getWishlistRoute() + "/registration",urlParameters));
     }
 
     public User getUserById(long id) {

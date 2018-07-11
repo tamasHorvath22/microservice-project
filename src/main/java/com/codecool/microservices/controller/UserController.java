@@ -4,10 +4,12 @@ package com.codecool.microservices.controller;
 import com.codecool.microservices.model.User;
 import com.codecool.microservices.service.CommunicationService;
 import com.codecool.microservices.service.UserService;
-import org.springframework.boot.web.servlet.server.Session;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
 
 @Controller
 @SessionAttributes({"user"})
@@ -40,8 +42,11 @@ public class UserController {
     public String login(@RequestParam("login_email") String email,
                         @RequestParam("login_password") String password,
                         Model model) {
-        User user = userService.login(email, password);
-        model.addAttribute("user", user);
+        User user = userService.login(email);
+        if (BCrypt.checkpw(password, user.getPassword())){
+            user.removePassword();
+            model.addAttribute("user", user);
+        }
         return loginHTML;
     }
 
@@ -51,8 +56,14 @@ public class UserController {
                                @RequestParam("first_name") String firstName,
                                @RequestParam("last_name") String lastName,
                                @RequestParam("address") String address,
-                               @RequestParam("phone_number") String phoneNumber){
-        User user = userService.registration(email, password, firstName, lastName, address, phoneNumber);
+                               @RequestParam("phone_number") String phoneNumber, Model model){
+        password = BCrypt.hashpw(password, BCrypt.gensalt());
+        try {
+            userService.registration(email, password, firstName, lastName, address, phoneNumber);
+        } catch (UnsupportedEncodingException ex) {
+            ex.printStackTrace();
+            model.addAttribute("error", "Couldn't register user!");
+        }
         return loginHTML;
     }
 
