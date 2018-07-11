@@ -1,5 +1,7 @@
 package com.codecool.microservices.model;
 
+import java.util.Date;
+
 public class Present {
 
     private int id;
@@ -9,14 +11,16 @@ public class Present {
     private String category;
     private boolean available;
     private int ownerId;
+    private Date timestamp;
 
-    public Present(int id, String name, double price, String category, boolean available, int ownerId) {
+    public Present(int id, String name, double price, String category, boolean available, int ownerId, Date timestamp) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
         this.available = available;
         this.ownerId = ownerId;
+        this.timestamp = timestamp;
     }
 
     public int getId() {

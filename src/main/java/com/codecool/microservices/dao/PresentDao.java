@@ -7,6 +7,9 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.Date;
+
 @Component
 public class PresentDao {
 
@@ -18,8 +21,12 @@ public class PresentDao {
 
     private JSONObject presentJSON;
 
-    private void getPresentJson(){
-        presentJSON = ???.getJson(urlParser.getPresentRoute());
+    private void getPresentJson(String route){
+        try {
+            presentJSON = jsonUtil.readJsonFromUrl(urlParser.getPresentRoute() + route);
+        } catch (IOException ex) {
+            System.out.println("No JSON found...");
+        }
     }
 
     private Present makePresentFromJson(){
@@ -29,6 +36,12 @@ public class PresentDao {
         String category = presentJSON.get("category").toString();
         boolean available = Boolean.valueOf(presentJSON.get("available").toString());
         Integer ownerId = Integer.valueOf(presentJSON.get("ownerid").toString());
-        return new Present(id, name, price, category, available, ownerId);
+        Date timestamp = new Date(presentJSON.get("timestamp").toString());
+        return new Present(id, name, price, category, available, ownerId, timestamp);
+    }
+
+    public Present getPresent(String route){
+        getPresentJson(route);
+        return makePresentFromJson();
     }
 }
