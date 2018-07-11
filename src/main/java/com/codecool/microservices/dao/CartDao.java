@@ -51,8 +51,9 @@ public class CartDao {
         return new Cart(id, presents, timestamp);
     }
 
-    public Cart getCart(String parameters) {
-        getCartJson(parameters);
+    public Cart getCart(long userId) {
+        getCartJson("/" + userId);
         return makeCartFromJson();
     }
+
 }

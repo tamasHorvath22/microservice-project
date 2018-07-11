@@ -4,17 +4,24 @@ import com.codecool.microservices.model.User;
 import com.codecool.microservices.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CartController {
 
     private final static String MAIN_PAGE = "index";
+    private final static String CART_PAGE = "index";
 
     @Autowired
     private CartService cartService;
+
+    @GetMapping("/cart")
+    public String showCart(@SessionAttribute("user") User user, Model model) {
+        long userId = user.getId();
+        model.addAttribute("cart", cartService.getById(userId));
+        return CART_PAGE;
+    }
 
     @PostMapping("/add-to-cart")
     public String addToCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) {
@@ -22,4 +29,12 @@ public class CartController {
         cartService.add(userId, presentId);
         return MAIN_PAGE;
     }
+
+    @DeleteMapping("/remove-from-cart")
+    public String removeFromCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) {
+        long userId = user.getId();
+        cartService.remove(userId, presentId);
+        return CART_PAGE;
+    }
+
 }
