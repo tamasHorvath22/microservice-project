@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Component
@@ -29,18 +32,20 @@ public class PresentDao {
         }
     }
 
-    private Present makePresentFromJson(){
+    private Present makePresentFromJson() throws ParseException{
         Integer id = Integer.valueOf(presentJSON.get("id").toString());
         String name = presentJSON.get("name").toString();
         double price = Double.valueOf(presentJSON.get("price").toString());
         String category = presentJSON.get("category").toString();
         boolean available = Boolean.valueOf(presentJSON.get("available").toString());
         Integer ownerId = Integer.valueOf(presentJSON.get("ownerid").toString());
-        Date timestamp = new Date(presentJSON.get("timestamp").toString());
+        String timeStampString = presentJSON.get("timestamp").toString();
+        DateFormat format = new SimpleDateFormat("YYYY-mm-dd");
+        Date timestamp = format.parse(timeStampString);
         return new Present(id, name, price, category, available, ownerId, timestamp);
     }
 
-    public Present getPresent(String route){
+    public Present getPresent(String route) throws ParseException{
         getPresentJson(route);
         return makePresentFromJson();
     }
