@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Present {
 
-    private int id;
+    private long id;
     private String name;
     private double price;
 
@@ -23,7 +23,7 @@ public class Present {
         this.timestamp = timestamp;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
