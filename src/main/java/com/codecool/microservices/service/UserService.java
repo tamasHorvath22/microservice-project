@@ -13,4 +13,8 @@ public class UserService {
         return userDao.login("valami", "valami");
         //Todo call DAO
     }
+
+    public User registration(String email, String password, String firstName, String lastName, String phoneNumber){
+        return userDao.registration(email, password, firstName, lastName, phoneNumber);
+    }
 }
