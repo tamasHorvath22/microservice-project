@@ -1,13 +1,12 @@
 package com.codecool.microservices.utility;
 
-import com.sun.mail.iap.Protocol;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.net.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 
