@@ -46,15 +46,26 @@
                 </div>
             </div>
 
-            <div class="row tm-albums-container grid">
-                <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col" th:each="present,iterStat : ${presents}">
-                    <figure class="effect-sadie">
-                        <img th:src="${present.getImageUrl()}" alt="Image" class="img-fluid">
-                        <figcaption>
-                            <h2 th:text="${present.getName()} + ${present.getId()}">Name</h2>
-                            <p th:text="${present.getDescription()}">Description</p>
-                        </figcaption>
-                    </figure>
+            <div class="row mb-5">
+                <div class="col-xl-12">
+                    <div class="media-boxes" th:each="present,iterStat : ${presents}">
+                        <div class="media">
+                            <img th:attr="src=${present.getImageUrl()}" alt="Image" class="mr-3">
+                            <div class="media-body tm-bg-gray">
+                                <div class="tm-description-box">
+                                    <h5 class="tm-text-blue" th:text="${present.getName()}"></h5>
+                                    <p class="mb-0" th:text="${present.getDescription()}"><a href="https://plus.google.com/+tooplate" target="_parent">Tooplate</a></p>
+                                    <p class="tm-text-blue" th:text="${present.getPrice()} + ' CC'"></p>
+                                </div>
+                            </div>
+                            <div class="tm-buy-box">
+                                <form method="post" th:action="${'/cart/remove/' + present.getId()}">
+                                    <button th:id="${'remove-button-' + present.getId()}"
+                                            class="tm-bg-blue tm-text-white tm-buy">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- media-boxes -->
                 </div>
             </div>
             <div class="row mb-5">
