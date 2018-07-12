@@ -1,7 +1,5 @@
 package com.codecool.microservices.model;
 
-import org.springframework.stereotype.Component;
-
 public class User {
 
     private long id;

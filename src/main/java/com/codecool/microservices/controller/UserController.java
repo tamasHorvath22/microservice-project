@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.AuthenticationException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 @Controller
@@ -36,8 +37,6 @@ public class UserController {
     @GetMapping(value = "/login")
     public String displayLogin(@ModelAttribute("user") User user, Model model) {
         System.out.println(user);
-        user = new User(1, "l", "v", "4", "5", "g");
-        model.addAttribute("user", user);
         return loginHTML;
     }
 
@@ -79,12 +78,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/logout")
-    public String logout(@ModelAttribute User user, Model model){
-        if (user != null && user.loggedIn()){
-            System.out.println("LOGOUT!");
-            user.logout();
-            model.addAttribute("user", user);
-        }
+    public String logout(@ModelAttribute User user, Model model, HttpServletRequest httpServletRequest){
+        model.addAttribute("user", userService.getAnonymUser());
         return loginHTML;
     }
 
@@ -94,6 +89,5 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
         return ResponseEntity.ok(user);
-//        return ResponseEntity.ok(new User(1, "qwe", "qwe", "eqw", "eqw ", "eqw"));
     }
 }

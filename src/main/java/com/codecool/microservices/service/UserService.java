@@ -25,4 +25,8 @@ public class UserService {
     public User getUserById(long id){
         return userDao.getUserById(id);
     }
+
+    public User getAnonymUser(){
+        return new User (0L, null, null, null, null, null);
+    }
 }
