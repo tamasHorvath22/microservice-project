@@ -29,10 +29,10 @@ function showContent(userData) {
     let img = document.createElement("img");
 
     nameHeader.classList = "mb-4 tm-text-pink-dark tm-media-2-header";
-    nameHeader.innerText = userData.firstName + " " + userData.lastName;
+    nameHeader.innerText = userData.user.firstName + " " + userData.user.lastName;
 
-    let headers = ["ID", "Email", "Address", "Phone"];
-    let values = [userData.id, userData.email, userData.address, userData.phoneNumber];
+    let headers = ["ID", "Email", "Address", "Phone", "Balance"];
+    let values = [userData.user.id, userData.user.email, userData.user.address, userData.user.phoneNumber, userData.balance];
 
     for (let i = 0; i < headers.length; i++) {
         let li = document.createElement("li");

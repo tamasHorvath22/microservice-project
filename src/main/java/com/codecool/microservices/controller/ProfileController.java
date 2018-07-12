@@ -1,19 +1,39 @@
 package com.codecool.microservices.controller;
 
 import com.codecool.microservices.model.User;
+import com.codecool.microservices.service.WalletService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfileController {
 
+    @Autowired
+    private WalletService walletService;
+
     @GetMapping("/profile")
     public String profileView(@SessionAttribute User user) {
-        if (user.getId() != 0) {
-            return "profile";
-        } else {
-            return "redirect:/login";
+        if(walletService.getWallet(user.getId()) == null) {
+            walletService.createWallet(user.getId());
         }
+        return "profile";
+    }
+
+    @PostMapping(value = "/profile")
+    public String deposit(@SessionAttribute User user, @RequestParam int amount) {
+        walletService.deposit(user.getId(), amount);
+        return "profile";
+//    public String profileView(@SessionAttribute User user) {
+//        if (user.getId() != 0) {
+//            return "profile";
+//        } else {
+//            return "redirect:/login";
+//        }
+//    }
+
     }
 }
