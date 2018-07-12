@@ -11,7 +11,6 @@ import java.io.*;
 import java.net.*;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.Iterator;
 
 @Component
 public class JsonUtil {

@@ -1,17 +1,20 @@
 package com.codecool.microservices.utility;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UrlParser {
+
+    @Autowired
     private JsonUtil jsonUtil;
 
-    private final String configPath = "src/main/java/com/codecool/microservices/config/urlconfig.json";
-
-    public UrlParser(JsonUtil jsonUtil) {
-        this.jsonUtil = jsonUtil;
+    public JsonUtil getJsonUtil() {
+        return jsonUtil;
     }
 
+    private final String configPath = "src/main/java/com/codecool/microservices/config/urlconfig.json";
+    
     public String getWishlistRoute(){
         return (String)jsonUtil.getJson(configPath).get("wishlistroute");
     }
