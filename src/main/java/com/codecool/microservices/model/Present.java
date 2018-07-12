@@ -15,7 +15,7 @@ public class Present {
     private String imageUrl;
     private Date timestamp;
 
-    public Present(int id, String name, String description, double price, String category, boolean available, int ownerId, String imageUrl,Date timestamp) {
+    public Present(long id, String name, String description, double price, String category, boolean available, int ownerId, String imageUrl,Date timestamp) {
         this.id = id;
         this.name = name;
         this.price = price;

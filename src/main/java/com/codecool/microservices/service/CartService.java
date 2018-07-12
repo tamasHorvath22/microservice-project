@@ -3,8 +3,6 @@ package com.codecool.microservices.service;
 import com.codecool.microservices.dao.CartDao;
 import com.codecool.microservices.model.Cart;
 import com.codecool.microservices.model.Present;
-import com.codecool.microservices.utility.JsonUtil;
-import com.codecool.microservices.utility.UrlParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +28,14 @@ public class CartService {
             }
         });
         return presents;
+    }
+
+    public double getCartSumPrice(List<Present> presents) {
+        double sum = 0;
+        for (Present present : presents) {
+            sum += present.getPrice();
+        }
+        return sum;
     }
 
     public void addToCart(long userId, long presentId) {
