@@ -43,8 +43,6 @@ public class OrderDao {
         List<Order> orders = new ArrayList<>();
         JSONArray jsonArray = (JSONArray) jsonObject.get("orders");
         ObjectMapper mapper = new ObjectMapper();
-//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-//        mapper.setDateFormat(df);
         if (jsonArray != null) {
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
