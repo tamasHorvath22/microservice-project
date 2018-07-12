@@ -22,8 +22,12 @@ public class PresentController {
     }
 
     @GetMapping("/addNewPresent")
-    public String renderForm() {
-        return "presentForm";
+    public String renderForm(@SessionAttribute User user) {
+        if (user.getId() != 0L) {
+            return "presentForm";
+        } else {
+            return "redirect:/login";
+        }
     }
 
     @PostMapping("addNewPresent")
@@ -35,8 +39,12 @@ public class PresentController {
             @RequestParam String category,
             @RequestParam String image
     ) {
-        Present newPresent = new Present(name, description, price, category, true, (int) user.getId(), image, new Date());
-        presentService.addPresent(newPresent);
-        return "redirect:/";
+        if (user.getId() != 0L) {
+            Present newPresent = new Present(name, description, price, category, true, (int) user.getId(), image, new Date());
+            presentService.addPresent(newPresent);
+            return "redirect:/";
+        } else {
+            return "redirect:/login";
+        }
     }
 }
