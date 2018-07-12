@@ -3,11 +3,10 @@ package com.codecool.microservices.service;
 import com.codecool.microservices.dao.CartDao;
 import com.codecool.microservices.model.Cart;
 import com.codecool.microservices.model.Present;
-import com.codecool.microservices.utility.JsonUtil;
-import com.codecool.microservices.utility.UrlParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,13 @@ public class CartService {
 
     public List<Present> getPresentsInCart(Cart cart) {
         List<Present> presents = new ArrayList<>();
-        cart.getPresentIds().forEach(presentId -> presents.add(presentService.getPresent(presentId)));
+        cart.getPresentIds().forEach(presentId -> {
+            try {
+                presents.add(presentService.getPresent(presentId));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        });
         return presents;
     }
 

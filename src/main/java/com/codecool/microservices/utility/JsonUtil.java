@@ -89,6 +89,8 @@ public class JsonUtil {
             connection.setUseCaches(false);
             connection.setDoOutput(true);
 
+            connection.connect();
+
             //Send request
             DataOutputStream wr = new DataOutputStream (
                     connection.getOutputStream());
