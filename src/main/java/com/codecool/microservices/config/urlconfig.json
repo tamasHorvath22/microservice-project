@@ -1,9 +1,9 @@
 {
   "wishlistroute": "https://cart-wishlist-vhs.herokuapp.com/wishlist",
-  "orderroute": "www.kaki.hu/",
-  "ewalletroute": " https://wallet-microservice.herokuapp.com/wallet",
+  "orderroute": "https://order-microservice-amf.herokuapp.com/order",
+  "ewalletroute": "www.kaki.hu/",
   "cartroute": "https://cart-wishlist-vhs.herokuapp.com/cart",
   "presentroute": "https://present-wishlist-poop.herokuapp.com/present/",
   "communicationroute": "https://shitwish-communication.herokuapp.com/",
-  "userroute": "www.kaki.hu/"
+  "userroute": "https://shitwish-user-service.herokuapp.com/"
 }
