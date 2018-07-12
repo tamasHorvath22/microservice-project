@@ -33,8 +33,8 @@ public class UserController {
 
     @GetMapping(value = "/login")
     public String displayLogin(@ModelAttribute("user") User user, Model model){
-        System.out.println(user);
-        user = new User(1, "l", "v", "4", "5", "g");
+        if (user != null && user.loggedIn()){
+        }
         model.addAttribute("user", user);
         return loginHTML;
     }
@@ -47,6 +47,7 @@ public class UserController {
             User user = userService.login(email);
             if (BCrypt.checkpw(password, user.getPassword())) {
                 user.removePassword();
+                user.login();
                 model.addAttribute("user", user);
                 return "redirect:/";
             } else {
@@ -76,8 +77,12 @@ public class UserController {
     }
 
     @GetMapping(value = "/logout")
-    public String logout(){
-        System.out.println(userService.getUserById(2));
-        return  loginHTML;
+    public String logout(@ModelAttribute User user, Model model){
+        if (user != null && user.loggedIn()){
+            System.out.println("LOGOUT!");
+            user.logout();
+            model.addAttribute("user", user);
+        }
+        return loginHTML;
     }
 }

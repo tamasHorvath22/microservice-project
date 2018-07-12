@@ -41,5 +41,4 @@ public class CartController {
         cartService.removeFromCart(userId, presentId);
         return CART_PAGE;
     }
-
 }

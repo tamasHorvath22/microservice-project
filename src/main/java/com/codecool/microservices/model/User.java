@@ -1,5 +1,7 @@
 package com.codecool.microservices.model;
 
+import org.springframework.stereotype.Component;
+
 public class User {
 
     private long id;
@@ -9,6 +11,7 @@ public class User {
     private String password;
     private String address;
     private String phoneNumber;
+    private boolean loggedIn = false;
 
     public User(long id, String firstName, String lastName, String email, String address, String phoneNumber) {
         this.id = id;
@@ -53,6 +56,18 @@ public class User {
 
     public void removePassword(){
         this.password = null;
+    }
+
+    public Boolean loggedIn(){
+        return this.loggedIn;
+    }
+
+    public void login(){
+        this.loggedIn = true;
+    }
+
+    public void logout(){
+        this.loggedIn = false;
     }
 }
 
