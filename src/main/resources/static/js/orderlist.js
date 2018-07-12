@@ -23,8 +23,9 @@ orderdom = {
             let actualOrderWrapper = document.getElementsByClassName("order-wrapper" + i)[0];
             let actualOrder = actualOrderWrapper.getElementsByClassName("order")[0];
             let actualPresents = actualOrderWrapper.getElementsByClassName("presents")[0];
+            let date = new Date(orders[i].timestamp);
             actualOrder.innerHTML = "<div><h3>Order " + orders[i].id +
-                " Ordered time: " + orders[i].timestamp.toString() + "</h3></div>";
+                " <i class='fas fa-calendar-alt'></i> " + date.toLocaleString() + "</h3></div>";
             for (let order of orders[i].order) {
                 if (order.id > 0) {
                     actualPresents.innerHTML += "<div id=present-wish-" + order.id + " class=\"row mb-5\">\n" +
