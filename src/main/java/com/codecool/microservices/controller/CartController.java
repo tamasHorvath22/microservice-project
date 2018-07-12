@@ -44,6 +44,7 @@ public class CartController {
             }
             model.addAttribute("presents", presents);
             model.addAttribute("itemsInCart", itemsInCart);
+            model.addAttribute("user", user);
             return CART_PAGE;
         } else {
             return "redirect:/login";

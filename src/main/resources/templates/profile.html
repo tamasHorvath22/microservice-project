@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -25,6 +25,7 @@
     <!-- Templatemo style -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!--<link rel="stylesheet" href="/css/tooplate-style.css">-->
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous" defer></script>
@@ -62,16 +63,19 @@
                     <nav class="navbar navbar-expand-sm">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
+                                <a href="/logout" class="nav-link tm-nav-link tm-text-white">Logout</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="/cart" class="nav-link tm-nav-link tm-text-white">Cart</a>
                             </li>
                             <li class="nav-item active">
                                 <a href="/" class="nav-link tm-nav-link tm-text-white">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/profile" class="nav-link tm-nav-link tm-text-white active">About</a>
+                                <a href="/addNewPresent" class="nav-link tm-nav-link tm-text-white">Add Present</a>
                             </li>
                             <li class="nav-item">
-                                <a href="contact.html" class="nav-link tm-nav-link tm-text-white">Contact</a>
+                                <a href="/" class="nav-link tm-nav-link tm-text-white active">Profile</a>
                             </li>
                         </ul>
                     </nav>
@@ -83,13 +87,27 @@
             <div class="tm-welcome">
                 <i class="fas tm-fa-big fa-gift tm-fa-mb-big"></i>
                 <h1 class="text-uppercase mb-3 tm-site-name">SHITWISH</h1>
-                <p class="tm-site-description">Show How I Too Would Identify (with) Something Here</p>
+                <p class="tm-site-description"></p>
             </div>
         </div>
 
     </div>
 
     <div class="container">
+        <div class="tm-search-form-container">
+            <form action="index.html" method="GET" class="form-inline tm-search-form">
+                <div class="text-uppercase tm-new-release">Profile</div>
+                <div class="form-group tm-search-box" align="right">
+                    <input type="text" name="keyword" class="form-control tm-search-input"
+                           placeholder="Type your keyword ...(Coming Soon)" disabled>
+                    <input type="submit" value="Search" class="form-control tm-search-submit" aria-disabled="true"
+                           disabled>
+                </div>
+                <div class="form-group tm-advanced-box">
+                    <p class="tm-text-white">Your shitty profile</p>
+                </div>
+            </form>
+        </div>
 
         <div class="row tm-about-row tm-mb-medium profile">
             <div class="tm-tab-links-container">
@@ -165,26 +183,27 @@
                     </div>
                 </div>
 
-                    </div>
-                    <div>
-                        <form action="/profile" method="POST">
-                            <label for="amount">Type in the amount you want to deposit</label>
-                            <input type="text" id="amount" name="amount">
-                            <button type="submit">Deposit</button>
-                        </form>
-                    </div>
-
+            </div>
+            <div>
+                <form action="/profile" method="POST">
+                    <label for="amount">Type in the amount you want to deposit</label>
+                    <input type="text" id="amount" name="amount">
+                    <button type="submit">Deposit</button>
+                </form>
+            </div>
         </div>
+
     </div>
+</div>
 
-    <!-- Bottom links -->
+<!-- Bottom links -->
 
-    <footer class="row tm-about-row">
-        <div class="col-xl-12">
-            <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company
-                Name - Web Design: <a href="http://tooplate.com" class="tm-text-gray">Tooplate</a></p>
-        </div>
-    </footer>
+<footer class="row tm-about-row">
+    <div class="col-xl-12">
+        <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company
+            Name - Web Design: <a href="http://tooplate.com" class="tm-text-gray">Tooplate</a></p>
+    </div>
+</footer>
 </div> <!-- .container -->
 
 </div> <!-- .main -->

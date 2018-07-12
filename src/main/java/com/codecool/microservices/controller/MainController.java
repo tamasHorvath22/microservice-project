@@ -49,4 +49,10 @@ public class MainController {
             return "redirect:login";
         }
     }
+
+
+    @GetMapping(value = "/contact")
+    public String contactPage() {
+        return "contact";
+    }
 }

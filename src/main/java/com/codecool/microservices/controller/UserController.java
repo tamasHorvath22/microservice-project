@@ -44,6 +44,8 @@ public class UserController {
     @GetMapping(value = "/login")
     public String displayLogin(@ModelAttribute("user") User user, Model model) {
         System.out.println(user);
+        user = new User(0, "l", "v", "4", "5", "g");
+        model.addAttribute("user", user);
         return loginHTML;
     }
 
@@ -62,6 +64,7 @@ public class UserController {
                 throw new AuthenticationException();
             }
         } catch (NullPointerException | AuthenticationException e) {
+            e.printStackTrace();
             System.out.println("Couldn't log in");
             return loginHTML;
         }
@@ -77,9 +80,9 @@ public class UserController {
         password = BCrypt.hashpw(password, BCrypt.gensalt());
         try {
             userService.registration(email, password, firstName, lastName, address, phoneNumber);
-            User newUser = userService.createUser(firstName, lastName, email, address, phoneNumber);
+            User newUser = userService.login(email);
             communicationService.sendRegistrationEmail(newUser);
-            walletService.getWallet(newUser.getId());
+            walletService.createWallet(newUser.getId());
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
             model.addAttribute("error", "Couldn't register user!");
