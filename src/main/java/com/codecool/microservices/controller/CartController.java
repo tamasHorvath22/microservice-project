@@ -42,14 +42,14 @@ public class CartController {
         return "redirect:/";
     }
 
-    @DeleteMapping("/cart")
-    public String removeFromCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) throws ParseException {
+    @PostMapping("/cart/remove/{presentId}")
+    public String removeFromCart(@PathVariable("presentId") long presentId, @SessionAttribute("user") User user) throws ParseException {
         long userId = user.getId();
         Present modifiedPresent = presentService.getPresent(presentId);
         modifiedPresent.setAvailable(true);
         presentService.modifyPresent(presentId,modifiedPresent);
         cartService.removeFromCart(userId, presentId);
-        return CART_PAGE;
+        return "redirect:/" + CART_PAGE;
     }
 
 }
