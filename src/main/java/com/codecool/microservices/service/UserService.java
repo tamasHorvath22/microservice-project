@@ -29,4 +29,8 @@ public class UserService {
     public User getAnonymUser(){
         return new User (0L, null, null, null, null, null);
     }
+
+    public User createUser(String firstName, String lastName, String email, String address, String phoneNumber) {
+        return new User(firstName, lastName, email, address, phoneNumber);
+    }
 }
