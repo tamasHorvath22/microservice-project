@@ -36,17 +36,22 @@ public class PaymentController {
 
     @GetMapping(value = "/payment")
     public String displayCart(@SessionAttribute User user, Model model) {
-        List<Present> presentList = new ArrayList<>();
-        for (Long presentId : cartService.getCart(user.getId()).getPresentIds()) {
-            presentList.add(presentDao.getPresentById(presentId));
-        }
+        if(user.getId() != 0L) {
 
-        Double sumPrice = 0.0;
-        for (Present present : presentList) {
-            sumPrice += present.getPrice();
+            List<Present> presentList = new ArrayList<>();
+            for (Long presentId : cartService.getCart(user.getId()).getPresentIds()) {
+                presentList.add(presentDao.getPresentById(presentId));
+            }
+
+            Double sumPrice = 0.0;
+            for (Present present : presentList) {
+                sumPrice += present.getPrice();
+            }
+            model.addAttribute("presentList", presentList);
+            model.addAttribute("sumPrice", sumPrice);
+            return "payment";
+        } else {
+            return "redirect:/login";
         }
-        model.addAttribute("presentList", presentList);
-        model.addAttribute("sumPrice", sumPrice);
-        return "payment";
     }
 }

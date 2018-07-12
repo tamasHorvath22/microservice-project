@@ -17,10 +17,11 @@ public class RestSignatureFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         HttpSession session= httpServletRequest.getSession();
+        ;
         try {
             if (session.getAttribute("user") == null) {
                 session.setAttribute("user", new User(0L, "none", "none", "none", "none", "none"));
-                return;
+//                return;
             }
         } catch (Exception e) {
             httpServletResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,

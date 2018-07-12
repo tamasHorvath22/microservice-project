@@ -20,6 +20,7 @@ public class OrderController {
 
     @GetMapping(value = "/order")
     public List<Order> getAllOrder() {
+
         long userId = 1L;
         List<Order> allOrders = orderService.getAllOrders(userId);
         return allOrders;

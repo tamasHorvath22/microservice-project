@@ -112,7 +112,7 @@ label {
 .panel-login h2{
     font-size: 20px;
     font-weight: 300;
-    margin: 30px;
+    margin: 10px;
 }
 .panel-login>.panel-heading {
     color: #848c9d;
@@ -158,7 +158,7 @@ label {
 }
 
 .panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
-    height: 45px;
+    height: 33px;
     border: 0;
     font-size: 16px;
     -webkit-transition: all 0.1s linear;
@@ -210,10 +210,10 @@ label {
     background-color: #E8E9EC;
     outline: none;
     color: #2D3B55;
-    font-size: 14px;
+    font-size: 12px;
     height: auto;
     font-weight: normal;
-    padding: 14px 0;
+    padding: 10px 0;
     text-transform: uppercase;
     border: none;
     border-radius: 0px;
@@ -226,6 +226,8 @@ label {
 }
 
 .errorDiv{
-    color: red;
+    color: #7e0007;
+    font-size: 18px;
     text-align: center;
+    font-weight: 100;
 }
