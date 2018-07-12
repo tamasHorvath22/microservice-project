@@ -5,11 +5,18 @@ import com.codecool.microservices.utility.JsonUtil;
 import com.codecool.microservices.utility.UrlParser;
 import com.google.gson.Gson;
 import org.json.JSONArray;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -77,5 +84,31 @@ public class PresentDao {
     public Present getPresent(String route) {
         getPresentJson(route);
         return makePresentFromJson();
+    }
+
+    public List<Present> getAllPresentById(long id){
+        List<Present> presents = new ArrayList<>();
+        DateFormat format = new SimpleDateFormat("YYYY-mm-dd");
+        try{
+            String route = urlParser.getUserRoute() + "user/" + id;
+            JSONObject response = jsonUtil.readJsonFromUrl(route );
+            JSONArray jsonArray = (JSONArray)response.get("presents");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject json = (JSONObject) jsonArray.get(i);
+                Present present = new Present(json.getInt("id"),
+                        json.getString("name"),
+                        json.getString("description"),
+                        json.getDouble("price"),
+                        json.getString("category"),
+                        json.getBoolean("available"),
+                        json.getInt("userId"),
+                        json.getString("imageUrl"),
+                        format.parse(json.getString("creation")));
+                presents.add(present);
+            }
+        } catch (IOException | ParseException ex){
+            ex.printStackTrace();
+        }
+        return presents;
     }
 }
