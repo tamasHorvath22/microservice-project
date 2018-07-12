@@ -130,12 +130,12 @@ public class PresentDao {
             int len = jsonArray.length();
             for (int i = 0; i < len; i++) {
                 presentJSON = (JSONObject) jsonArray.get(i);
-                if(len > 4){
-                    list.add(makePresentFromJson());
-                }
+                list.add(makePresentFromJson());
             }
             Collections.shuffle(list);
-            return list.subList(1, 5);
+            if(len > 5){
+                return list.subList(1, 5);
+            }
         }
         return list;
     }
