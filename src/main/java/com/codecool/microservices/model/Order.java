@@ -9,7 +9,6 @@ public class Order {
     private Long id;
     private Long userId;
     private Date timestamp;
-
     private List<Present> order = new ArrayList<>();
     private List<Integer> presentIds = new ArrayList<>();
 

@@ -27,7 +27,7 @@ public class WishlistDao {
         try{
             String urlParameters =
                     "userId=" + URLEncoder.encode(Long.toString(userId), "UTF-8") +
-                            "&presentId=" + URLEncoder.encode(Long.toString(presentId), "UTF-8");
+                    "&presentId=" + URLEncoder.encode(Long.toString(presentId), "UTF-8");
             jsonUtil.sendPostRequest(urlParser.getWishlistRoute(),urlParameters);
         }
         catch (UnsupportedEncodingException ex){
