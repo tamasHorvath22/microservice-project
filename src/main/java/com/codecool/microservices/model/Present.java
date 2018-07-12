@@ -70,6 +70,14 @@ public class Present {
         return imageUrl;
     }
 
+    public void setAvailable(boolean state){
+        available = state;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
     @Override
     public String toString() {
         return "Present{" +

@@ -25,7 +25,7 @@ public class PresentService {
     }
 
     public void modifyPresent(long presentId, Present present) {
-        presentDao.modifyPresent("/", presentId, present);
+        presentDao.modifyPresent("/" + presentId, present);
     }
 
     public Present getPresent(long presentId) throws ParseException {

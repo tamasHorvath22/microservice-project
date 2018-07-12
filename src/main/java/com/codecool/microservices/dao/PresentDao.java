@@ -64,8 +64,18 @@ public class PresentDao {
         jsonUtil.sendDeleteRequest(urlParser.getPresentRoute() + route);
     }
 
-    public void modifyPresent(String route, long presentId, Present present) {
-        jsonUtil.sendPutRequest(urlParser.getPresentRoute() + route, present.toString());
+    public void modifyPresent(String route, Present present) {
+        JSONObject newPresent = new JSONObject();
+        newPresent.put("id", present.getId());
+        newPresent.put("name", present.getName());
+        newPresent.put("category", present.getCategory());
+        newPresent.put("description", present.getDescription());
+        newPresent.put("imageUrl", present.getImageUrl());
+        newPresent.put("price", present.getPrice());
+        newPresent.put("userId", present.getOwnerId());
+        newPresent.put("available", present.isAvailable());
+        newPresent.put("creation", present.getTimestamp());
+        jsonUtil.sendPutRequest(urlParser.getPresentRoute() + route, newPresent.toString());
     }
 
     public void addPresent(String route, Present present) {
