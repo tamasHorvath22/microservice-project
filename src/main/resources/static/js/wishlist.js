@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 function drawWishes(presents) {
     for (var i = 0; i < presents.length; i++) {
-        wishlistContaner.append("<div class=\"row mb-5\">\n" +
+        wishlistContaner.append("<div id=present-wish-"+ presents[i].id +" class=\"row mb-5\">\n" +
             "<div class=\"col-xl-12\">\n" +
             "<div class=\"media-boxes\">\n" +
             "<div class=\"media\">\n" +
@@ -23,7 +23,7 @@ function drawWishes(presents) {
             "<p class=\"mb-0 description\">" + presents[i].description + "</p>\n" +
             "</div>\n" +
             "<div class=\"tm-buy-box\">\n" +
-            "<a href=\"#\" class=\"tm-bg-blue tm-text-white tm-buy\">buy</a>\n" +
+            "<button id="+ presents[i].id +" class=\"tm-bg-blue tm-text-white tm-buy add-to-cart\">Add to cart</button>\n" +
             "<span class=\"tm-text-blue tm-price-tag\">"+ presents[i].price +" Codecoin</span>\n" +
             "</div></div></div></div></div></div>")
     }

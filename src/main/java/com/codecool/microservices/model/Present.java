@@ -7,11 +7,21 @@ public class Present {
     private int id;
     private String name;
     private double price;
+    private String imageUrl;
+    private String description;
 
     private String category;
     private boolean available;
     private int ownerId;
     private Date timestamp;
+
+    public Present(int id, String name, double price, String imageUrl, String description) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.description = description;
+    }
 
     public Present(int id, String name, double price, String category, boolean available, int ownerId, Date timestamp) {
         this.id = id;
