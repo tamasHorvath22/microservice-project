@@ -42,7 +42,7 @@ public class WishlistDao {
     public List<Long> getWishlist(long userId){
         JSONObject jsonObject = null;
         try {
-            jsonObject = jsonUtil.readJsonFromUrl(urlParser.getWishlistRoute() + "/" + Long.toString(userId));
+            jsonObject = jsonUtil.readJsonFromUrl(urlParser.getWishlistRoute() + "/user/" + Long.toString(userId));
         } catch (IOException e) {
             e.printStackTrace();
         }
