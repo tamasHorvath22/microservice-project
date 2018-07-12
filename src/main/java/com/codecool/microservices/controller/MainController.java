@@ -3,6 +3,7 @@ package com.codecool.microservices.controller;
 import com.codecool.microservices.model.Present;
 import com.codecool.microservices.model.User;
 import com.codecool.microservices.service.PresentService;
+import com.codecool.microservices.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +26,12 @@ public class MainController {
     @Autowired
     private RestSignatureFilter restSignatureFilter;
 
+    @Autowired
+    private WishlistService wishlistService;
+
     @GetMapping({"", "index"})
     public String indexPage(@SessionAttribute("user") User user, Model model){
+        System.out.println(user.getId());
         List<Present> presents = new ArrayList<>();
         List<Present> randomPresents = new ArrayList<>();
         if(user.getId() != 0L) {

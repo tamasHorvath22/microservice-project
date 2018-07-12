@@ -5,9 +5,9 @@ import com.codecool.microservices.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class ProfileController {
@@ -27,7 +27,13 @@ public class ProfileController {
     public String deposit(@SessionAttribute User user, @RequestParam int amount) {
         walletService.deposit(user.getId(), amount);
         return "profile";
+//    public String profileView(@SessionAttribute User user) {
+//        if (user.getId() != 0) {
+//            return "profile";
+//        } else {
+//            return "redirect:/login";
+//        }
+//    }
+
     }
-
-
 }

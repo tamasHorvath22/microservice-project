@@ -62,10 +62,13 @@
                     <nav class="navbar navbar-expand-sm">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link tm-nav-link tm-text-white">Home</a>
+                                <a href="/cart" class="nav-link tm-nav-link tm-text-white">Cart</a>
                             </li>
                             <li class="nav-item active">
-                                <a href="about.html" class="nav-link tm-nav-link tm-text-white active">About</a>
+                                <a href="/" class="nav-link tm-nav-link tm-text-white">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/profile" class="nav-link tm-nav-link tm-text-white active">About</a>
                             </li>
                             <li class="nav-item">
                                 <a href="contact.html" class="nav-link tm-nav-link tm-text-white">Contact</a>
@@ -78,28 +81,15 @@
 
         <div class="container text-center tm-welcome-container">
             <div class="tm-welcome">
-                <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
-                <h1 class="text-uppercase mb-3 tm-site-name">Insertion</h1>
-                <p class="tm-site-description">New HTML Website Template</p>
+                <i class="fas tm-fa-big fa-gift tm-fa-mb-big"></i>
+                <h1 class="text-uppercase mb-3 tm-site-name">SHITWISH</h1>
+                <p class="tm-site-description">Show How I Too Would Identify (with) Something Here</p>
             </div>
         </div>
 
     </div>
 
     <div class="container">
-        <div class="tm-search-form-container">
-            <form action="index.html" method="GET" class="form-inline tm-search-form">
-                <div class="text-uppercase tm-new-release">New Release</div>
-                <div class="form-group tm-search-box">
-                    <input type="text" name="keyword" class="form-control tm-search-input"
-                           placeholder="Type your keyword ...">
-                    <input type="submit" value="Search" class="form-control tm-search-submit">
-                </div>
-                <div class="form-group tm-advanced-box">
-                    <a href="#" class="tm-text-white">Go Advanced ...</a>
-                </div>
-            </form>
-        </div>
 
         <div class="row tm-about-row tm-mb-medium profile">
             <div class="tm-tab-links-container">
@@ -128,7 +118,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="contact-tab" data-toggle="tab"
+                        <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="userPresents-button"
+                           data-toggle="tab"
                            href="#tab4" role="tab" aria-controls="contact" aria-selected="false">
                             <i class="far fa-meh-rolling-eyes"></i>
                             <p class="media-body mb-0 tm-media-link">Your shit presents</p>
@@ -161,28 +152,18 @@
                         </div>
                     </div>
 
-                        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-                            <div class="media tm-media-2 order-container">
+                    <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                        <div class="media tm-media-2 order-container">
 
-                            </div>
-                        </div>
-
-                    <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
-                        <div class="media tm-media-2">
-                            <i class="fas fa-5x fa-headphones mb-3 tm-text-pink-dark tm-media-2-icon"></i>
-                            <div class="media-body tm-media-body-2">
-                                <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">Sed id magna eu mi aliquet</h2>
-                                <p class="mb-4">Phasellus efficitur, ante et bibendum accumsan, nisi tellus
-                                    fermentum eros, eget tincidunt enim orci at arcu. Etiam vel ligula non neque
-                                    pharetra scelerisque mollis ac arcu.</p>
-                                <p class="mb-4">In luctus eu turpis sed sodales. Suspendisse nisi ante, dapibus id
-                                    purus at, tristique ullamcorper dolor. Nullam tempus quam id odio tempus
-                                    bibendum. Nullam vulputate, justo fermentum interdum fermentum, diam elit
-                                    iaculis lorem, sed puvina.</p>
-                                <a href="#" class="btn btn-secondary">Read More</a>
-                            </div>
                         </div>
                     </div>
+
+                    <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                        <div class="media tm-media-2 userPresents-container">
+
+                        </div>
+                    </div>
+                </div>
 
                     </div>
                     <div>
@@ -193,27 +174,28 @@
                         </form>
                     </div>
 
-                </div>
-            </div>
+        </div>
+    </div>
 
-            <!-- Bottom links -->
+    <!-- Bottom links -->
 
-            <footer class="row tm-about-row">
-                <div class="col-xl-12">
-                    <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company
-                        Name - Web Design: <a href="http://tooplate.com" class="tm-text-gray">Tooplate</a></p>
-                </div>
-            </footer>
-        </div> <!-- .container -->
+    <footer class="row tm-about-row">
+        <div class="col-xl-12">
+            <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company
+                Name - Web Design: <a href="http://tooplate.com" class="tm-text-gray">Tooplate</a></p>
+        </div>
+    </footer>
+</div> <!-- .container -->
 
-    </div> <!-- .main -->
+</div> <!-- .main -->
 
-    <!-- load JS -->
-    <script src="/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
-    <script src="/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
-    <script src="/js/wishlist.js"></script>
-    <script src="/js/orderlist.js"></script>
-    <script>
+<!-- load JS -->
+<script src="/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+<script src="/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
+<script src="/js/wishlist.js"></script>
+<script src="/js/orderlist.js"></script>
+<script src="/js/userPresents.js" defer></script>
+<script>
 
     /* DOM is ready
     ------------------------------------------------*/
