@@ -31,21 +31,13 @@ public class MainController {
 
     @GetMapping({"", "index"})
     public String indexPage(@SessionAttribute("user") User user, Model model){
+        System.out.println(user.getId());
         List<Present> presents = new ArrayList<>();
         List<Present> randomPresents = new ArrayList<>();
         if(user.getId() != 0L) {
             try {
                 presents = presentService.getAllPresents();
                 randomPresents = presentService.getFourRandomPresents();
-                for (Present present: presents){
-                    List<Present> wishlist = wishlistService.getPresentsByUserId(user.getId());
-                    for (Present wish: wishlist){
-                        if(present.getId()==wish.getId()){
-                            presents.remove(present);
-                            randomPresents.remove(present);
-                        }
-                    }
-                }
             } catch (ParseException ex) {
                 System.out.println("no presents :(");
             }

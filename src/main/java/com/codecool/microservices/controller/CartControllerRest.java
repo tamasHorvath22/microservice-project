@@ -17,9 +17,9 @@ public class CartControllerRest {
     private CartService cartService;
 
     @PostMapping("/add-to-cart")
-    public ResponseEntity<String> addToCart(@RequestParam("presentId") long presentId) {
-        //long userId = user.getId();
-        long userId = 1L;
+    public ResponseEntity<String> addToCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) {
+        long userId = user.getId();
+        //long userId = 1L;
         cartService.addToCart(userId, presentId);
         System.out.println("trying to add to cart");
         return new ResponseEntity<>("ok", HttpStatus.OK);
