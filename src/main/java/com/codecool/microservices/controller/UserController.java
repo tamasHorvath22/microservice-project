@@ -64,6 +64,7 @@ public class UserController {
                 throw new AuthenticationException();
             }
         } catch (NullPointerException | AuthenticationException e) {
+            e.printStackTrace();
             System.out.println("Couldn't log in");
             return loginHTML;
         }
@@ -79,9 +80,9 @@ public class UserController {
         password = BCrypt.hashpw(password, BCrypt.gensalt());
         try {
             userService.registration(email, password, firstName, lastName, address, phoneNumber);
-            User newUser = userService.createUser(firstName, lastName, email, address, phoneNumber);
+            User newUser = userService.login(email);
             communicationService.sendRegistrationEmail(newUser);
-            walletService.getWallet(newUser.getId());
+            walletService.createWallet(newUser.getId());
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
             model.addAttribute("error", "Couldn't register user!");
