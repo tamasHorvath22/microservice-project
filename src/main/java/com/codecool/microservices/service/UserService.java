@@ -2,6 +2,7 @@ package com.codecool.microservices.service;
 
 import com.codecool.microservices.dao.UserDao;
 import com.codecool.microservices.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -10,6 +11,7 @@ import java.security.InvalidKeyException;
 @Service
 public class UserService {
 
+    @Autowired
     UserDao userDao;
 
     public User login(String email){

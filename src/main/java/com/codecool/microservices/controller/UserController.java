@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.AuthenticationException;
 import java.io.UnsupportedEncodingException;
 
 @Controller
@@ -42,12 +43,19 @@ public class UserController {
     public String login(@RequestParam("login_email") String email,
                         @RequestParam("login_password") String password,
                         Model model) {
-        User user = userService.login(email);
-        if (BCrypt.checkpw(password, user.getPassword())){
-            user.removePassword();
-            model.addAttribute("user", user);
+        try {
+            User user = userService.login(email);
+            if (BCrypt.checkpw(password, user.getPassword())) {
+                user.removePassword();
+                model.addAttribute("user", user);
+                return "redirect:/";
+            } else {
+                throw new AuthenticationException();
+            }
+        } catch (NullPointerException | AuthenticationException e) {
+            System.out.println("Couldn't log in");
+            return loginHTML;
         }
-        return loginHTML;
     }
 
     @PostMapping(value = "/registration")
@@ -69,6 +77,7 @@ public class UserController {
 
     @GetMapping(value = "/logout")
     public String logout(){
-        return loginHTML;
+        System.out.println(userService.getUserById(2));
+        return  loginHTML;
     }
 }
