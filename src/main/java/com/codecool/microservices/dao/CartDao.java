@@ -52,7 +52,7 @@ public class CartDao {
     }
 
     public void removeFromCart(long userId, long presentId) {
-        String url = urlParser.getCartRoute() + "userId=" + userId + "&presentId=" + presentId;
+        String url = urlParser.getCartRoute() + "?userId=" + userId + "&presentId=" + presentId;
         jsonUtil.sendDeleteRequest(url);
     }
 
