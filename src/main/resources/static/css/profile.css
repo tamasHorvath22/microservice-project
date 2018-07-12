@@ -19,3 +19,8 @@
     border: 1px solid #454545;
     border-radius: 10px;
 }
+
+.present-img {
+    max-width: 100px;
+    height: auto;
+}
