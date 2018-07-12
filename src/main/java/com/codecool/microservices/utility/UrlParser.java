@@ -14,7 +14,7 @@ public class UrlParser {
     }
 
     private final String configPath = "src/main/java/com/codecool/microservices/config/urlconfig.json";
-    
+
     public String getWishlistRoute(){
         return (String)jsonUtil.getJson(configPath).get("wishlistroute");
     }
