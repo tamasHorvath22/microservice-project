@@ -303,7 +303,10 @@ figure.effect-sadie:hover p {
 }
 
 .media { margin-bottom: 35px; }
-.media-body { display: flex; }
+.media-body {
+    display: flex;
+    min-height: 150px;
+}
 
 .tm-buy-box {
     display: flex;
@@ -311,8 +314,12 @@ figure.effect-sadie:hover p {
     align-items: center;
     justify-content: space-between;
     width: 140px;
+    margin-left: 16px;
 }
 
+.mr-3 {
+    max-height: 150px;
+}
 .tm-buy {
     font-weight: 400;
     width: 100%;
