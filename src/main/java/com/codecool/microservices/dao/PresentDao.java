@@ -5,7 +5,6 @@ import com.codecool.microservices.utility.JsonUtil;
 import com.codecool.microservices.utility.UrlParser;
 import com.google.gson.Gson;
 import org.json.JSONArray;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +14,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -127,5 +127,23 @@ public class PresentDao {
             Collections.shuffle(list);
         }
         return list.subList(1, 5);
+    }
+
+    public Present getPresentById(long id) {
+        String stringId = "" + id;
+        getPresentJson(stringId);
+        return createPresentFromJson();
+    }
+
+    private Present createPresentFromJson() {
+        return new Present((Long) presentJSON.get("id"),
+                                      (String) presentJSON.get("name"),
+                                      (String) presentJSON.get("description"),
+                                      (Double) presentJSON.get("price"),
+                                      (String) presentJSON.get("category"),
+                                      (Boolean) presentJSON.get("available"),
+                                      (Integer) presentJSON.get("userId"),
+                                      (String) presentJSON.get("imageUrl"),
+                                      (Date) presentJSON.get("creation"));
     }
 }
