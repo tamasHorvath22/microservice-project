@@ -36,7 +36,7 @@ public class UserController {
     @GetMapping(value = "/login")
     public String displayLogin(@ModelAttribute("user") User user, Model model) {
         System.out.println(user);
-        user = new User(1, "l", "v", "4", "5", "g");
+        user = new User(0, "l", "v", "4", "5", "g");
         model.addAttribute("user", user);
         return loginHTML;
     }
