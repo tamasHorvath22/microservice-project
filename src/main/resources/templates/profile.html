@@ -25,6 +25,7 @@
     <!-- Templatemo style -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="/css/tooplate-style.css">
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous" defer></script>
@@ -71,7 +72,7 @@
                                 <a href="/" class="nav-link tm-nav-link tm-text-white active">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a th:href="@{/profile(id=${user.getId()})}" class="nav-link tm-nav-link tm-text-white">Profile</a>
+                                <a href="/" class="nav-link tm-nav-link tm-text-white">Profile</a>
                             </li>
                         </ul>
                     </nav>
@@ -83,7 +84,7 @@
             <div class="tm-welcome">
                 <i class="fas tm-fa-big fa-gift tm-fa-mb-big"></i>
                 <h1 class="text-uppercase mb-3 tm-site-name">SHITWISH</h1>
-                <p class="tm-site-description">Show How I Too Would Identify (with) Something Here</p>
+                <p class="tm-site-description"></p>
             </div>
         </div>
 
@@ -92,14 +93,13 @@
     <div class="container">
         <div class="tm-search-form-container">
             <form action="index.html" method="GET" class="form-inline tm-search-form">
-                <div class="text-uppercase tm-new-release">New Release</div>
-                <div class="form-group tm-search-box">
-                    <input type="text" name="keyword" class="form-control tm-search-input"
-                           placeholder="Type your keyword ...">
-                    <input type="submit" value="Search" class="form-control tm-search-submit">
+                <div class="text-uppercase tm-new-release">Profile</div>
+                <div class="form-group tm-search-box" align="right">
+                    <input type="text" name="keyword" class="form-control tm-search-input" placeholder="Type your keyword ...(Coming Soon)" disabled>
+                    <input type="submit" value="Search" class="form-control tm-search-submit" aria-disabled="true" disabled>
                 </div>
                 <div class="form-group tm-advanced-box">
-                    <a href="#" class="tm-text-white">Go Advanced ...</a>
+                    <p class="tm-text-white">Your shitty profile</p>
                 </div>
             </form>
         </div>
