@@ -33,6 +33,7 @@ a:hover, a:focus, a.active {
     background-size: cover;
     background-position: center center;
     color: white;
+    text-shadow: 1px 1px #2f2f2f;
     max-height: 700px;
     min-height: 400px;
 }
@@ -51,7 +52,7 @@ a:hover, a:focus, a.active {
 .tm-site-description {
     font-size: 1.6rem;
     color: white;
-    text-shadow: 0 1px #2f2f2f;
+    text-shadow: 1px 1px #2f2f2f;
     font-weight: bold;
 }
 
@@ -285,7 +286,7 @@ figure.effect-sadie:hover p {
 
 .tm-font-300 { font-weight: 300; }
 .tm-text-gray, .tm-link-gray { color: #666666; }
-.tm-text-white { color: #cafafb; }
+.tm-text-white { color: #ffffff; }
 .tm-text-blue { color: #6e9ece; }
 .tm-text-blue-dark { color: #006699; }
 .tm-text-pink { color: #D6688F; }
