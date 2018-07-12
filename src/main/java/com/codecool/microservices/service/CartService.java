@@ -30,6 +30,14 @@ public class CartService {
         return presents;
     }
 
+    public double getCartSumPrice(List<Present> presents) {
+        double sum = 0;
+        for (Present present : presents) {
+            sum += present.getPrice();
+        }
+        return sum;
+    }
+
     public void addToCart(long userId, long presentId) {
         cartDao.addToCart(userId, presentId);
     }

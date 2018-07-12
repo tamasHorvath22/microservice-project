@@ -58,9 +58,25 @@
                 </div>
             </div>
             <div class="row mb-5">
+                <div class="col-xl-12">
+                    <div class="media-boxes">
+                        <div class="media">
+                            <div class="media-body tm-bg-gray">
+                                <div class="tm-description-box">
+                                    <h5 class="tm-text-blue">Total sum:</h5>
+                                    <p class="mb-0" th:text="${sumPrice} + ' CC'">Sum</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
                 <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                    <a href="/order" class="tm-bg-pink tm-text-white tm-buy">Buy</a>
-                    <a href="/" class="tm-bg-blue tm-text-white tm-buy">Home</a>
+                    <form action="/order" method="POST">
+                        <button class="tm-bg-pink tm-text-white tm-buy">Buy</button>
+                    </form>
+                    <a href="/"><button class="tm-bg-blue tm-text-white tm-buy">Home</button></a>
                 </div>
             </div>
         </div>

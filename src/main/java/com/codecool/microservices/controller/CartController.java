@@ -1,11 +1,14 @@
 package com.codecool.microservices.controller;
 
+import com.codecool.microservices.model.Present;
 import com.codecool.microservices.model.User;
 import com.codecool.microservices.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class CartController {
@@ -19,7 +22,9 @@ public class CartController {
     @GetMapping("/cart")
     public String showCart(@SessionAttribute("user") User user, Model model) {
         long userId = user.getId();
-        model.addAttribute("presents", cartService.getPresentsInCart(cartService.getCart(userId)));
+        List<Present> presents = cartService.getPresentsInCart(cartService.getCart(userId));
+        model.addAttribute("presents", presents);
+        model.addAttribute("sumPrice", cartService.getCartSumPrice(presents));
         return CART_PAGE;
     }
 
