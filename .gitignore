@@ -109,4 +109,5 @@ buildNumber.properties
 
 .idea/*
 application.properties
+microservices-project.iml
 

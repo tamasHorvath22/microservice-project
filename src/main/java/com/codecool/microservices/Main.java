@@ -19,10 +19,9 @@ public class Main {
         PresentDao presentDao = new PresentDao(urlParser, jsonUtil);
         PresentService presentService = new PresentService(presentDao);
 
-        WishlistDao wishlistDao = new WishlistDao(urlParser, jsonUtil);
+/*        WishlistDao wishlistDao = new WishlistDao(urlParser, jsonUtil);
         WishlistService wishlistService = new WishlistService(wishlistDao, presentService);
-        wishlistService.removePresent(5L, 11L);
-/*
+        wishlistService.removePresent(5L, 11L);*/
 
 
         presentService.addPresent(new Present(1, "termék1", "ez egy termék kecske", 15D, "állat",true, 5,
@@ -40,6 +39,5 @@ public class Main {
         presentService.addPresent(new Present(1, "termék5", "ez egy termék kecske", 15D, "állat",true, 5,
                 "http://ocdn.eu/pulscms-transforms/1/maRktkqTURBXy9jMmUxNTU1YTRjZjU5N2E5YzQ4NTQ3MzE1ZmVhMmU1ZS5qcGVnkpUDAgDNCEPNBKWTBc0DFM0BvA",
                 new Date()));
-*/
     }
 }

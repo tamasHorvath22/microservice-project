@@ -21,6 +21,7 @@ public class MainController {
 
     @GetMapping({"", "index"})
     public String indexPage(@SessionAttribute("user") User user, Model model){
+        System.out.println(user.getId());
         List<Present> presents = new ArrayList<>();
         List<Present> randomPresents = new ArrayList<>();
         try{
