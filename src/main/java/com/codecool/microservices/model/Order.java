@@ -1,22 +1,22 @@
 package com.codecool.microservices.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Order {
 
-    private int id;
-    private int userId;
+    private Long id;
+    private Long userId;
     private Date timestamp;
 
     private List<Present> order = new ArrayList<>();
+    private List<Integer> presentIds = new ArrayList<>();
 
-    public int getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -28,10 +28,13 @@ public class Order {
         return order;
     }
 
-    public Order(int id, int userId, Date timestamp) {
+    public Order(){}
+
+    public Order(List presentIds, Long id, Long userId, Date timestamp) {
         this.id = id;
         this.userId = userId;
         this.timestamp = timestamp;
+        this.presentIds = presentIds;
     }
 
     public void setOrder(List<Present> order) {
@@ -40,5 +43,25 @@ public class Order {
 
     public void addToOrder(Present present){
         order.add(present);
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public List<Integer> getPresentIds() {
+        return presentIds;
+    }
+
+    public void setPresentIds(List<Integer> presentIds) {
+        this.presentIds = presentIds;
     }
 }

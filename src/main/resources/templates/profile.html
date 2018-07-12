@@ -15,6 +15,7 @@
     -->
     <!-- load CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="/css/profile.css">
     <!-- Google web font "Open Sans" -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
@@ -116,7 +117,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="contact-tab" data-toggle="tab"
+                        <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="order-button" data-toggle="tab"
                            href="#tab3" role="tab" aria-controls="contact" aria-selected="false">
                             <i class="fab fa-2x fa-amazon-pay pr-4"></i>
                             <p class="media-body mb-0 tm-media-link">Order</p>
@@ -181,20 +182,21 @@
                     </div>
 
                         <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-                            <div class="media tm-media-2">
-                                <i class="fab fa-5x fa-amazon-pay mb-3 tm-text-pink-dark tm-media-2-icon"></i>
-                                <div class="media-body tm-media-body-2">
-                                    <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">Etiam vel ligula eu mi
-                                        aliquet</h2>
-                                    <p class="mb-4">Phasellus efficitur, ante et bibendum accumsan, nisi tellus
-                                        fermentum eros, eget tincidunt enim orci at arcu. Etiam vel ligula non neque
-                                        pharetra scelerisque mollis ac arcu.</p>
-                                    <p class="mb-4">In luctus eu turpis sed sodales. Suspendisse nisi ante, dapibus id
-                                        purus at, tristique ullamcorper dolor. Nullam tempus quam id odio tempus
-                                        bibendum. Nullam vulputate, justo fermentum interdum fermentum, diam elit
-                                        iaculis lorem, sed puvina.</p>
-                                    <a href="#" class="btn btn-secondary">Read More</a>
-                                </div>
+                            <div class="media tm-media-2 order-container">
+
+                                <!--<i class="fab fa-5x fa-amazon-pay mb-3 tm-text-pink-dark tm-media-2-icon"></i>-->
+                                <!--<div class="media-body tm-media-body-2">-->
+                                    <!--<h2 class="mb-4 tm-text-pink-dark tm-media-2-header">Etiam vel ligula eu mi-->
+                                        <!--aliquet</h2>-->
+                                    <!--<p class="mb-4">Phasellus efficitur, ante et bibendum accumsan, nisi tellus-->
+                                        <!--fermentum eros, eget tincidunt enim orci at arcu. Etiam vel ligula non neque-->
+                                        <!--pharetra scelerisque mollis ac arcu.</p>-->
+                                    <!--<p class="mb-4">In luctus eu turpis sed sodales. Suspendisse nisi ante, dapibus id-->
+                                        <!--purus at, tristique ullamcorper dolor. Nullam tempus quam id odio tempus-->
+                                        <!--bibendum. Nullam vulputate, justo fermentum interdum fermentum, diam elit-->
+                                        <!--iaculis lorem, sed puvina.</p>-->
+                                    <!--<a href="#" class="btn btn-secondary">Read More</a>-->
+                                <!--</div>-->
                             </div>
                         </div>
 
@@ -236,6 +238,7 @@
     <script src="/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
     <script src="/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
     <script src="/js/wishlist.js"></script>
+    <script src="/js/orderlist.js"></script>
     <script>
 
         /* DOM is ready
