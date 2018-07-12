@@ -3,7 +3,6 @@ package com.codecool.microservices.dao;
 import com.codecool.microservices.model.Order;
 import com.codecool.microservices.model.Present;
 import com.codecool.microservices.model.User;
-import com.codecool.microservices.utility.JsonUtil;
 import com.codecool.microservices.utility.UrlParser;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
