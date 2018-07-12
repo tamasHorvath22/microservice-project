@@ -4,6 +4,7 @@ import com.codecool.microservices.model.Present;
 import com.codecool.microservices.model.User;
 import com.codecool.microservices.service.CartService;
 import com.codecool.microservices.service.PresentService;
+import com.codecool.microservices.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +23,14 @@ public class CartController {
     private CartService cartService;
     @Autowired
     private PresentService presentService;
+    @Autowired
+    private WalletService walletService;
 
     @GetMapping("/cart")
     public String showCart(@SessionAttribute("user") User user, Model model) {
         long userId = user.getId();
         List<Present> presents = cartService.getPresentsInCart(cartService.getCart(userId));
+        walletService.createWallet(userId);
         model.addAttribute("presents", presents);
         model.addAttribute("sumPrice", cartService.getCartSumPrice(presents));
         return CART_PAGE;

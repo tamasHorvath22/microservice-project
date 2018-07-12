@@ -41,7 +41,7 @@ public class MainController {
             model.addAttribute("randomPresents", randomPresents);
             return "index";
         } else {
-            return "redirect:/login";
+            return "redirect:login";
         }
     }
 }
