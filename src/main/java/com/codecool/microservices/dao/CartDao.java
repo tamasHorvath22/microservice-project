@@ -40,7 +40,7 @@ public class CartDao {
     }
 
     public Cart getCart(long userId) {
-        getCartJson("/" + userId);
+        getCartJson("/user/" + userId);
         return makeCartFromJson();
     }
 

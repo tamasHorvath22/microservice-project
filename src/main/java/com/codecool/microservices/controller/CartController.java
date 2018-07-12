@@ -23,14 +23,14 @@ public class CartController {
         return CART_PAGE;
     }
 
-    @PostMapping("/add-to-cart")
+    @PostMapping("/cart")
     public String addToCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) {
         long userId = user.getId();
         cartService.addToCart(userId, presentId);
         return MAIN_PAGE;
     }
 
-    @DeleteMapping("/remove-from-cart")
+    @DeleteMapping("/cart")
     public String removeFromCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) {
         long userId = user.getId();
         cartService.removeFromCart(userId, presentId);
