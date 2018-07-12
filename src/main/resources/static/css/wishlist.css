@@ -33,7 +33,6 @@ a:hover, a:focus, a.active {
     background-size: cover;
     background-position: center center;
     color: white;
-    text-shadow: 1px 1px #2f2f2f;
     max-height: 700px;
     min-height: 400px;
 }
@@ -52,8 +51,6 @@ a:hover, a:focus, a.active {
 .tm-site-description {
     font-size: 1.6rem;
     color: white;
-    text-shadow: 1px 1px #2f2f2f;
-    font-weight: bold;
 }
 
 .navbar-expand-sm .navbar-nav .nav-link { padding: 10px 20px; }
@@ -286,7 +283,7 @@ figure.effect-sadie:hover p {
 
 .tm-font-300 { font-weight: 300; }
 .tm-text-gray, .tm-link-gray { color: #666666; }
-.tm-text-white { color: #ffffff; }
+.tm-text-white { color: #fff; }
 .tm-text-blue { color: #6e9ece; }
 .tm-text-blue-dark { color: #006699; }
 .tm-text-pink { color: #D6688F; }
@@ -304,10 +301,7 @@ figure.effect-sadie:hover p {
 }
 
 .media { margin-bottom: 35px; }
-.media-body {
-    display: flex;
-    min-height: 150px;
-}
+.media-body { display: flex; }
 
 .tm-buy-box {
     display: flex;
@@ -315,18 +309,6 @@ figure.effect-sadie:hover p {
     align-items: center;
     justify-content: space-between;
     width: 140px;
-    margin-left: 16px;
-}
-
-.mr-3 {
-    max-height: 150px;
-}
-.tm-buy {
-    font-weight: 400;
-    width: 100%;
-    padding: 20px 40px;
-    padding: 20px;
-    height: 90px;
 }
 
 .tm-bg-blue.tm-buy:hover,
@@ -348,7 +330,7 @@ figure.effect-sadie:hover p {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     font-size: 1.2rem;
     font-weight: 400;
 }
@@ -894,9 +876,33 @@ iframe { max-width: 100%; }
 .wishlist-container img {
     width: 100px;
     height: 100px;
-    margin-top: 40px;
 }
 
 .tm-description-box {
     width: 450px;
+}
+
+.media {
+    display: inline-block!important;
+    margin-bottom: 10px;
+    /*background-color: #eaeaea!important;*/
+}
+
+/*.mb-5 {
+    background-color: #eaeaea!important;
+}*/
+
+.tm-buy {
+    font-weight: 400;
+    width: 100%;
+    padding: 10px;
+    border: none;
+}
+
+.tm-bg-gray {
+    background-color: #eaeaea;
+}
+
+.a-wish {
+    background-color: #f5f3f3;
 }

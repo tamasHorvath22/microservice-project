@@ -1,0 +1,25 @@
+.order {
+    width: 100%;
+    /*background-color: #0b2e13;*/
+}
+
+.presents {
+    width: 80%;
+    /*background-color: #0c5460;*/
+}
+
+.order-container {
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.order-wrapper {
+    border: 1px solid #454545;
+    border-radius: 10px;
+}
+
+.present-img {
+    max-height: 60px;
+    width: auto;
+}

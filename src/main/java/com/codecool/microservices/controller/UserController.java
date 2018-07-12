@@ -5,6 +5,8 @@ import com.codecool.microservices.model.User;
 import com.codecool.microservices.service.CommunicationService;
 import com.codecool.microservices.service.UserService;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,18 +23,18 @@ public class UserController {
     private UserService userService;
     private CommunicationService communicationService;
 
-    public UserController(UserService userService, CommunicationService communicationService){
+    public UserController(UserService userService, CommunicationService communicationService) {
         this.userService = userService;
         this.communicationService = communicationService;
     }
 
     @ModelAttribute("user")
-    public User setUpUser(){
+    public User setUpUser() {
         return null;
     }
 
     @GetMapping(value = "/login")
-    public String displayLogin(@ModelAttribute("user") User user, Model model){
+    public String displayLogin(@ModelAttribute("user") User user, Model model) {
         System.out.println(user);
         user = new User(1, "l", "v", "4", "5", "g");
         model.addAttribute("user", user);
@@ -64,7 +66,7 @@ public class UserController {
                                @RequestParam("first_name") String firstName,
                                @RequestParam("last_name") String lastName,
                                @RequestParam("address") String address,
-                               @RequestParam("phone_number") String phoneNumber, Model model){
+                               @RequestParam("phone_number") String phoneNumber, Model model) {
         password = BCrypt.hashpw(password, BCrypt.gensalt());
         try {
             userService.registration(email, password, firstName, lastName, address, phoneNumber);
@@ -76,8 +78,16 @@ public class UserController {
     }
 
     @GetMapping(value = "/logout")
-    public String logout(){
+    public String logout() {
         System.out.println(userService.getUserById(2));
-        return  loginHTML;
+        return loginHTML;
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<User> getUserDetails(@ModelAttribute User user) {
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
+        return ResponseEntity.ok(user);
     }
 }
