@@ -14,11 +14,14 @@ import java.util.List;
 @Service
 public class WishlistService {
 
-    @Autowired
-    WishlistDao wishlistDao;
+    private WishlistDao wishlistDao;
 
-    @Autowired
-    PresentService presentService;
+    private PresentService presentService;
+
+    public WishlistService(WishlistDao wishlistDao, PresentService presentService) {
+        this.wishlistDao = wishlistDao;
+        this.presentService = presentService;
+    }
 
     public List<Present> getPresentsByUserId(long userId) {
         List<Long> presentIds = wishlistDao.getWishlist(userId);

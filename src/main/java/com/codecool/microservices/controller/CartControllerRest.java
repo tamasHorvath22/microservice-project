@@ -17,7 +17,7 @@ public class CartControllerRest {
     private CartService cartService;
 
     @PostMapping("/add-to-cart")
-    public ResponseEntity addToCart(@RequestParam("presentId") long presentId) {
+    public ResponseEntity<String> addToCart(@RequestParam("presentId") long presentId) {
         //long userId = user.getId();
         long userId = 1L;
         cartService.addToCart(userId, presentId);

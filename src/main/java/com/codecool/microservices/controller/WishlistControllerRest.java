@@ -27,8 +27,8 @@ public class WishlistControllerRest {
 
     @PostMapping("/wishlist/remove")
     public ResponseEntity getUserWishlist(@RequestParam("presentId") long presentId) {
-        wishlistService.removePresent(5L, presentId);
         System.out.println("trying to remove present: " + presentId);
+        wishlistService.removePresent(5L, presentId);
         return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 }
