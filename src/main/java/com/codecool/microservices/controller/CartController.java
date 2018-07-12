@@ -29,6 +29,7 @@ public class CartController {
         List<Present> presents = cartService.getPresentsInCart(cartService.getCart(userId));
         model.addAttribute("presents", presents);
         model.addAttribute("sumPrice", cartService.getCartSumPrice(presents));
+        model.addAttribute("user", user);
         return CART_PAGE;
     }
 
@@ -43,7 +44,8 @@ public class CartController {
     }
 
     @DeleteMapping("/cart")
-    public String removeFromCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) throws ParseException {
+    public String removeFromCart(@RequestParam("presentId") long presentId,
+                                 @SessionAttribute("user") User user) throws ParseException {
         long userId = user.getId();
         Present modifiedPresent = presentService.getPresent(presentId);
         modifiedPresent.setAvailable(true);
