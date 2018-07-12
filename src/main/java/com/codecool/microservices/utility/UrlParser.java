@@ -24,7 +24,7 @@ public class UrlParser {
         return (String)jsonUtil.getJson(configPath).get("ewalletroute");
     }
     
-    public String getCardRoute(){
+    public String getCartRoute(){
         return (String)jsonUtil.getJson(configPath).get("cartroute");
     }
 
