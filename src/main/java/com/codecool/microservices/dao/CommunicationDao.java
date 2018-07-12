@@ -17,8 +17,9 @@ public class CommunicationDao {
     @Autowired
     private UrlParser urlParser;
 
-    public void sendRegistrationMail(User user, String urlParameter) {
+    public void sendRegistrationMail(User user) {
         try{
+            String urlParameter = "registration";
             JSONObject userJson = createUserJsonObject(user);
 
             urlParser.getJsonUtil().sendPostRequestForPresents(urlParser.getCommunicationRoute() + urlParameter, userJson.toString());
