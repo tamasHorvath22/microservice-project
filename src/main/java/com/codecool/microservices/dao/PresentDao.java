@@ -97,10 +97,12 @@ public class PresentDao {
                 JSONObject json = (JSONObject) jsonArray.get(i);
                 Present present = new Present(json.getInt("id"),
                         json.getString("name"),
+                        json.getString("description"),
                         json.getDouble("price"),
                         json.getString("category"),
                         json.getBoolean("available"),
                         json.getInt("userId"),
+                        json.getString("imageUrl"),
                         format.parse(json.getString("creation")));
                 presents.add(present);
             }
