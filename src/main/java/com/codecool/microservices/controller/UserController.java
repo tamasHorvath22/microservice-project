@@ -36,7 +36,7 @@ public class UserController {
     @GetMapping(value = "/login")
     public String displayLogin(@ModelAttribute("user") User user, Model model) {
         System.out.println(user);
-        user = new User(1, "l", "v", "4", "5", "g");
+        user = new User(0, "l", "v", "4", "5", "g");
         model.addAttribute("user", user);
         return loginHTML;
     }
@@ -70,6 +70,8 @@ public class UserController {
         password = BCrypt.hashpw(password, BCrypt.gensalt());
         try {
             userService.registration(email, password, firstName, lastName, address, phoneNumber);
+            User newUser = userService.createUser(firstName, lastName, email, address, phoneNumber);
+            communicationService.sendRegistrationEmail(newUser);
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
             model.addAttribute("error", "Couldn't register user!");
@@ -89,5 +91,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
         return ResponseEntity.ok(user);
+//        return ResponseEntity.ok(new User(1, "qwe", "qwe", "eqw", "eqw ", "eqw"));
     }
 }
