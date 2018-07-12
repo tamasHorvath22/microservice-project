@@ -135,18 +135,19 @@ public class PresentDao {
                 }
             }
             Collections.shuffle(list);
+            return list.subList(1, 5);
         }
-        return list.subList(1, 5);
+        return list;
     }
 
     public Present getPresentById(long id) {
         String stringId = "" + id;
         getPresentJson(stringId);
-        return createPresentFromJson();
+        return makePresentFromJson();
     }
 
     private Present createPresentFromJson() {
-        return new Present((Long) presentJSON.get("id"),
+        return new Present(Long.valueOf(presentJSON.get("id").toString()),
                                       (String) presentJSON.get("name"),
                                       (String) presentJSON.get("description"),
                                       (Double) presentJSON.get("price"),

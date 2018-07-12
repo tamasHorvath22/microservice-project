@@ -51,7 +51,7 @@
                     <figure class="effect-sadie">
                         <img th:src="${present.getImageUrl()}" alt="Image" class="img-fluid">
                         <figcaption>
-                            <h2 th:text="${present.getName()} + ${present.getId()}">Name</h2>
+                            <h2 th:text="${present.getName()}">Name</h2>
                             <p th:text="${present.getDescription()}">Description</p>
                         </figcaption>
                     </figure>
