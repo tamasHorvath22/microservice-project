@@ -3,6 +3,7 @@ package com.codecool.microservices.controller;
 import com.codecool.microservices.model.Present;
 import com.codecool.microservices.model.User;
 import com.codecool.microservices.service.PresentService;
+import com.codecool.microservices.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,9 @@ public class MainController {
     @Autowired
     private RestSignatureFilter restSignatureFilter;
 
+    @Autowired
+    private WishlistService wishlistService;
+
     @GetMapping({"", "index"})
     public String indexPage(@SessionAttribute("user") User user, Model model){
         List<Present> presents = new ArrayList<>();
@@ -33,6 +37,15 @@ public class MainController {
             try {
                 presents = presentService.getAllPresents();
                 randomPresents = presentService.getFourRandomPresents();
+                for (Present present: presents){
+                    List<Present> wishlist = wishlistService.getPresentsByUserId(user.getId());
+                    for (Present wish: wishlist){
+                        if(present.getId()==wish.getId()){
+                            presents.remove(present);
+                            randomPresents.remove(present);
+                        }
+                    }
+                }
             } catch (ParseException ex) {
                 System.out.println("no presents :(");
             }
