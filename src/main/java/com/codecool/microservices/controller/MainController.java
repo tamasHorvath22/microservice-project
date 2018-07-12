@@ -26,7 +26,7 @@ public class MainController {
     private RestSignatureFilter restSignatureFilter;
 
     @GetMapping({"", "index"})
-    public String indexPage(@SessionAttribute("user") User user, Model model, HttpServletRequest request){
+    public String indexPage(@SessionAttribute("user") User user, Model model){
         List<Present> presents = new ArrayList<>();
         List<Present> randomPresents = new ArrayList<>();
         if(user.getId() != 0L) {
@@ -41,8 +41,6 @@ public class MainController {
             model.addAttribute("randomPresents", randomPresents);
             return "index";
         } else {
-            HttpSession session =request.getSession(false);
-            session.invalidate();
             return "redirect:/login";
         }
     }
