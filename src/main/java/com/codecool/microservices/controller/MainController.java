@@ -38,15 +38,6 @@ public class MainController {
             try {
                 presents = presentService.getAllPresents();
                 randomPresents = presentService.getFourRandomPresents();
-                for (Present present: presents){
-                    List<Present> wishlist = wishlistService.getPresentsByUserId(user.getId());
-                    for (Present wish: wishlist){
-                        if(present.getId()==wish.getId()){
-                            presents.remove(present);
-                            randomPresents.remove(present);
-                        }
-                    }
-                }
             } catch (ParseException ex) {
                 System.out.println("no presents :(");
             }
