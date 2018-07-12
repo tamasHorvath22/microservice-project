@@ -61,6 +61,8 @@ public class JsonUtil {
             HttpURLConnection httpCon = (HttpURLConnection) urlThing.openConnection();
             httpCon.setDoOutput(true);
             httpCon.setRequestMethod("PUT");
+            httpCon.setRequestProperty("Content-Type",
+                    "application/json");
             OutputStreamWriter out = new OutputStreamWriter(
                     httpCon.getOutputStream());
             out.write(content);

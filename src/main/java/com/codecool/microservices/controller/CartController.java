@@ -22,14 +22,21 @@ public class CartController {
     private CartService cartService;
     @Autowired
     private PresentService presentService;
+    @Autowired
+    private RestSignatureFilter restSignatureFilter;
+
 
     @GetMapping("/cart")
     public String showCart(@SessionAttribute("user") User user, Model model) {
-        long userId = user.getId();
-        List<Present> presents = cartService.getPresentsInCart(cartService.getCart(userId));
-        model.addAttribute("presents", presents);
-        model.addAttribute("sumPrice", cartService.getCartSumPrice(presents));
-        return CART_PAGE;
+        if(user.getId() != 0L) {
+            long userId = user.getId();
+            List<Present> presents = cartService.getPresentsInCart(cartService.getCart(userId));
+            model.addAttribute("presents", presents);
+            model.addAttribute("sumPrice", cartService.getCartSumPrice(presents));
+            return CART_PAGE;
+        } else {
+            return "redirect:/login";
+        }
     }
 
     @PostMapping("/cart")
@@ -51,5 +58,4 @@ public class CartController {
         cartService.removeFromCart(userId, presentId);
         return "redirect:/" + CART_PAGE;
     }
-
 }

@@ -900,3 +900,8 @@ iframe { max-width: 100%; }
 .tm-description-box {
     width: 450px;
 }
+
+.disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
