@@ -110,4 +110,4 @@ buildNumber.properties
 .idea/*
 application.properties
 microservices-project.iml
-
+src/main/java/com/codecool/microservices/.DS_Store

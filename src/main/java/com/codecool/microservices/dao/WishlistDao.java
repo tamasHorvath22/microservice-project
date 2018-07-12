@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -44,8 +45,9 @@ public class WishlistDao {
         try {
             jsonObject = jsonUtil.readJsonFromUrl(urlParser.getWishlistRoute() + "/user/" + Long.toString(userId));
         } catch (IOException e) {
-            e.printStackTrace();
+            return new ArrayList<>();
         }
+
         List<Long> list = new ArrayList<>();
         JSONArray jsonArray = (JSONArray)jsonObject.get("presentIds");
         if (jsonArray != null) {

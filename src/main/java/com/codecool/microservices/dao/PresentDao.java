@@ -130,23 +130,24 @@ public class PresentDao {
             int len = jsonArray.length();
             for (int i = 0; i < len; i++) {
                 presentJSON = (JSONObject) jsonArray.get(i);
-                if(len > 4){
-                    list.add(makePresentFromJson());
-                }
+                list.add(makePresentFromJson());
             }
             Collections.shuffle(list);
+            if(len > 5){
+                return list.subList(1, 5);
+            }
         }
-        return list.subList(1, 5);
+        return list;
     }
 
     public Present getPresentById(long id) {
         String stringId = "" + id;
         getPresentJson(stringId);
-        return createPresentFromJson();
+        return makePresentFromJson();
     }
 
     private Present createPresentFromJson() {
-        return new Present((Long) presentJSON.get("id"),
+        return new Present(Long.valueOf(presentJSON.get("id").toString()),
                                       (String) presentJSON.get("name"),
                                       (String) presentJSON.get("description"),
                                       (Double) presentJSON.get("price"),
