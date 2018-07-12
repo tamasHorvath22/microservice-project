@@ -6,14 +6,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class UrlParser {
     private JsonUtil jsonUtil;
-
     private final String configPath = "src/main/java/com/codecool/microservices/config/urlconfig.json";
 
     private JSONObject urls;
 
     public UrlParser(JsonUtil jsonUtil) {
         this.jsonUtil = jsonUtil;
-        urls = urls;
+        urls = jsonUtil.getJson(configPath);
     }
 
     public String getWishlistRoute(){
