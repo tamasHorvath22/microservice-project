@@ -17,7 +17,12 @@ http://www.tooplate.com/view/2101-insertion
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
   <link rel="stylesheet" href="/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
   <link rel="stylesheet" href="/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
-  <link rel="stylesheet" href="/css/tooplate-style.css">                                           <!-- Templatemo style -->
+  <link rel="stylesheet" href="/css/tooplate-style.css">
+
+  <!-- Latest compiled and minified Jquery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous" defer></script>
+  <!-- Templatemo style -->
 
   <script>
     var renderPage = true;
@@ -97,10 +102,10 @@ http://www.tooplate.com/view/2101-insertion
 
       <div class="row tm-albums-container grid">
         <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col" th:each="randomPresent,iterStat : ${randomPresents}">
-          <figure class="effect-sadie">
-            <img th:attr="src=${randomPresent.getImageUrl()}" alt="Image" class="img-fluid">
+          <figure class="effect-sadie " th:id="${'featured-present-' + randomPresent.getId()}">
+            <img th:attr="src=${randomPresent.getImageUrl()}" alt="Image" th:id="${randomPresent.getId()}" class="img-fluid add-to-wishlist-featured">
             <figcaption>
-              <h2 th:text="${randomPresent.getName()}">First Album</h2>
+              <h2 th:text="${randomPresent.getName()}" th:id="${randomPresent.getId()}" class="add-to-wishlist-featured">First Album</h2>
               <p th:text="${randomPresent.getDescription()}">Rollover text and description text goes here over mouse over...</p>
             </figcaption>
           </figure>
@@ -117,7 +122,7 @@ http://www.tooplate.com/view/2101-insertion
 
       <div class="row mb-5">
         <div class="col-xl-12">
-          <div class="media-boxes" th:each="present,iterStat : ${presents}">
+          <div class="media-boxes" th:id="${'main-present-' + present.getId()}" th:each="present,iterStat : ${presents}">
             <div class="media">
               <img th:attr="src=${present.getImageUrl()}" alt="Image" class="mr-3">
               <div class="media-body tm-bg-gray">
@@ -130,9 +135,8 @@ http://www.tooplate.com/view/2101-insertion
                     <form th:attr="action='/cart?presentId='+${present.getId()}" method="post">
                         <button class="tm-bg-blue tm-text-white tm-buy">buy</button>
                     </form>
-                    <form action="/wishlist" method="post">
-                        <button class="tm-bg-pink tm-text-white tm-buy">wish</button>
-                    </form>
+                    <button th:id="${present.getId()}" class="tm-bg-pink tm-text-white tm-buy add-to-wishlist">wish</button>
+
 
                     <span class="tm-text-blue tm-price-tag" th:text="${present.getPrice()}">$5.50</span>
                 </div>
@@ -166,6 +170,7 @@ http://www.tooplate.com/view/2101-insertion
 
   <!-- load JS -->
   <script src="/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+  <script src="/js/main.js"></script> <!-- https://jquery.com/ -->
   <script>
 
     /* DOM is ready

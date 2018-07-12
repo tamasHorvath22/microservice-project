@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,10 +30,17 @@ public class CartController {
     @GetMapping("/cart")
     public String showCart(@SessionAttribute("user") User user, Model model) {
         if(user.getId() != 0L) {
-            long userId = user.getId();
-            List<Present> presents = cartService.getPresentsInCart(cartService.getCart(userId));
+            List<Present> presents = new ArrayList<>();
+            boolean itemsInCart = false;
+            try {
+                presents = cartService.getPresentsInCart(cartService.getCart(user.getId()));
+                model.addAttribute("sumPrice",  cartService.getCartSumPrice(presents));
+                itemsInCart = true;
+            } catch (NullPointerException e) {
+                System.out.println("No item in cart");
+            }
             model.addAttribute("presents", presents);
-            model.addAttribute("sumPrice", cartService.getCartSumPrice(presents));
+            model.addAttribute("itemsInCart", itemsInCart);
             model.addAttribute("user", user);
             return CART_PAGE;
         } else {
@@ -50,13 +58,14 @@ public class CartController {
         return "redirect:/";
     }
 
-    @PostMapping("/cart/remove/{presentId}")
-    public String removeFromCart(@PathVariable("presentId") long presentId, @SessionAttribute("user") User user) throws ParseException {
+    @DeleteMapping("/cart")
+    public String removeFromCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) throws ParseException {
         long userId = user.getId();
         Present modifiedPresent = presentService.getPresent(presentId);
         modifiedPresent.setAvailable(true);
         presentService.modifyPresent(presentId,modifiedPresent);
         cartService.removeFromCart(userId, presentId);
-        return "redirect:/" + CART_PAGE;
+        return CART_PAGE;
     }
+
 }

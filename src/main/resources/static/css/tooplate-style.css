@@ -903,5 +903,5 @@ iframe { max-width: 100%; }
 
 .disabled {
     opacity: 0.8;
-    cursor: not-allowed;
+    cursor: not-allowed!important;
 }
