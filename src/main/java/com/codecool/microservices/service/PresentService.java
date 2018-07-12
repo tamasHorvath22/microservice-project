@@ -36,4 +36,7 @@ public class PresentService {
         return presentDao.getAllPresents("");
     }
 
+    public List<Present> getPresentsByUserId(long id){
+        return presentDao.getAllPresentById(id);
+    }
 }
