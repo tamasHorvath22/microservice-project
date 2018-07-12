@@ -45,11 +45,11 @@ public class WalletDao {
         return null;
     }
 
-    public void deposit(long userId, int amount) {
+    public void deposit(long userId, double amount) {
         try{
             String urlParameters =
                     "userId=" + URLEncoder.encode(Long.toString(userId), "UTF-8") +
-                    "&sum=" + URLEncoder.encode(Integer.toString(amount), "UTF-8");
+                    "&sum=" + URLEncoder.encode(Double.toString(amount), "UTF-8");
             jsonUtil.sendPutRequest(urlParser.getEwalletRoute(), urlParameters);
         }
         catch (UnsupportedEncodingException ex){

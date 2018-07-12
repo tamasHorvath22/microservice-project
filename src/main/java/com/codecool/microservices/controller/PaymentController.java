@@ -1,6 +1,7 @@
 package com.codecool.microservices.controller;
 
 import com.codecool.microservices.dao.CommunicationDao;
+import com.codecool.microservices.service.CommunicationService;
 import com.codecool.microservices.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,9 @@ public class PaymentController {
 
     @Autowired
     CommunicationDao communicationDao;
+
+    @Autowired
+    CommunicationService communicationService;
 
     @Autowired
     CartService cartService;
@@ -57,7 +61,12 @@ public class PaymentController {
     @PostMapping(value = "/payment")
     public String makePayment(@SessionAttribute User user) {
         int sumPrice = countSumPrice(getPresentList(user));
+
         walletService.withdraw(user.getId(), sumPrice);
+        List<Present> presentList = getPresentList(user);
+        for (int i = 0; i < presentList.size(); i++) {
+            walletService.deposit(presentList.get(i).getOwnerId(), presentList.get(i).getPrice());
+        }
         return "index";
     }
 
