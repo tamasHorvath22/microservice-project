@@ -3,6 +3,7 @@ package com.codecool.microservices.dao;
 import com.codecool.microservices.model.Order;
 import com.codecool.microservices.utility.JsonUtil;
 import com.codecool.microservices.utility.UrlParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ public class OrderDao {
 
     private JSONObject orderJson;
     private List<Order> orders;
-    private Order order;
 
     @Autowired
     private UrlParser urlParser;
@@ -26,20 +26,27 @@ public class OrderDao {
     private JsonUtil jsonUtil;
 
     public List<Order> getAllOrders(Long userId) {
-        JSONObject jsonObject;
+        JSONObject jsonObject = null;
         try {
             jsonObject = jsonUtil.readJsonFromUrl(urlParser.getOrderRoute() + "/" + "user/" + Long.toString(userId));
         }catch (IOException e){
             e.printStackTrace();
         }
         List<Order> orders = new ArrayList<>();
-        JSONArray jsonArray = new JSONArray();
-
+        JSONArray jsonArray = (JSONArray) jsonObject.get("orders");
+        ObjectMapper mapper = new ObjectMapper();
+        if (jsonArray != null){
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    Order order = mapper.readValue(jsonArray.get(i).toString(), Order.class);
+                    orders.add(order);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         return orders;
     }
-
-
-    public List<Long> getWishlist(long userId){         JSONObject jsonObject = null;         try {             jsonObject = jsonUtil.readJsonFromUrl(urlParser.getWishlistRoute() + "/" + Long.toString(userId));         } catch (IOException e) {             e.printStackTrace();         }         List<Long> list = new ArrayList<>();         JSONArray jsonArray = (JSONArray)jsonObject.get("presentIds");         if (jsonArray != null) {             int len = jsonArray.length();             for (int i=0;i<len;i++){                 list.add(Long.valueOf((Integer)jsonArray.get(i)));             }         }         return list;     }
 
 //
 //    private void getJson() {
@@ -52,6 +59,6 @@ public class OrderDao {
 //
 //    private void createOrderObject() {
 //        order = new Order(Long.valueOf("id"), Long.valueOf(orderJson.get("userId").toString()), new Date(Long.valueOf(orderJson.get("timestamp").toString())));
-    }
+}
 //
 //}
