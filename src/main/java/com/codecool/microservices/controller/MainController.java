@@ -20,7 +20,7 @@ public class MainController {
     private PresentService presentService;
 
     @GetMapping({"", "index"})
-    public String indexPage(@SessionAttribute User user, Model model){
+    public String indexPage(@SessionAttribute("user") User user, Model model){
         List<Present> presents = new ArrayList<>();
         List<Present> randomPresents = new ArrayList<>();
         try{

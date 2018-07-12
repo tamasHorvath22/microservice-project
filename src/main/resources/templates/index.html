@@ -53,7 +53,7 @@ http://www.tooplate.com/view/2101-insertion
                   <a href="index.html" class="nav-link tm-nav-link tm-text-white active">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link tm-nav-link tm-text-white">About</a>
+                  <a th:href="@{/profile(id=${user.getId()})}" class="nav-link tm-nav-link tm-text-white">About</a>
                 </li>
                 <li class="nav-item">
                   <a href="contact.html" class="nav-link tm-nav-link tm-text-white">Contact</a>
@@ -120,8 +120,13 @@ http://www.tooplate.com/view/2101-insertion
                 </div>
               </div>
                 <div class="tm-buy-box">
-                    <a href="/cart" class="tm-bg-blue tm-text-white tm-buy">buy</a>
-                    <a href="/wishlist" class="tm-bg-pink tm-text-white tm-buy">wishlist</a>
+                    <form th:attr="action='/cart?presentId='+${present.getId()}" method="post">
+                        <button class="tm-bg-blue tm-text-white tm-buy">buy</button>
+                    </form>
+                    <form action="/wishlist" method="post">
+                        <button class="tm-bg-pink tm-text-white tm-buy">wish</button>
+                    </form>
+
                     <span class="tm-text-blue tm-price-tag" th:text="${present.getPrice()}">$5.50</span>
                 </div>
             </div>

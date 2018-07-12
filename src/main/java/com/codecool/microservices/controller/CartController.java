@@ -32,7 +32,7 @@ public class CartController {
     public String addToCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) {
         long userId = user.getId();
         cartService.addToCart(userId, presentId);
-        return MAIN_PAGE;
+        return "redirect:/";
     }
 
     @DeleteMapping("/cart")

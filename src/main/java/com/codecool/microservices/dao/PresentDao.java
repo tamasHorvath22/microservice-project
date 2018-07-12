@@ -26,8 +26,6 @@ public class PresentDao {
 
     private JSONObject presentJSON;
 
-    private Random random = new Random();
-
     public PresentDao(UrlParser urlParser, JsonUtil jsonUtil) {
         this.urlParser = urlParser;
         this.jsonUtil = jsonUtil;
@@ -53,7 +51,10 @@ public class PresentDao {
             int len = jsonArray.length();
             for (int i = 0; i < len; i++) {
                 presentJSON = (JSONObject) jsonArray.get(i);
-                list.add(makePresentFromJson());
+                Present newPresent = makePresentFromJson();
+                if(newPresent.isAvailable()){
+                    list.add(newPresent);
+                }
             }
         }
         return list;
