@@ -36,7 +36,7 @@ public class WalletDao {
 
     public Wallet getWallet(long userId) {
         try {
-            walletJson = jsonUtil.readJsonFromUrl(urlParser.getEwalletRoute() + userId);
+            walletJson = jsonUtil.readJsonFromUrl(urlParser.getEwalletRoute() + "user/" + userId);
             createWalletObject();
             return wallet;
         } catch (IOException e) {

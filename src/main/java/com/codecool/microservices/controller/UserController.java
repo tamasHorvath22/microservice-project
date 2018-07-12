@@ -2,8 +2,10 @@ package com.codecool.microservices.controller;
 
 
 import com.codecool.microservices.model.User;
+import com.codecool.microservices.model.Wallet;
 import com.codecool.microservices.service.CommunicationService;
 import com.codecool.microservices.service.UserService;
+import com.codecool.microservices.service.WalletService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.naming.AuthenticationException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Controller
 @SessionAttributes({"user"})
@@ -22,10 +27,12 @@ public class UserController {
 
     private UserService userService;
     private CommunicationService communicationService;
+    private WalletService walletService;
 
-    public UserController(UserService userService, CommunicationService communicationService) {
+    public UserController(UserService userService, CommunicationService communicationService, WalletService walletService) {
         this.userService = userService;
         this.communicationService = communicationService;
+        this.walletService = walletService;
     }
 
     @ModelAttribute("user")
@@ -72,6 +79,7 @@ public class UserController {
             userService.registration(email, password, firstName, lastName, address, phoneNumber);
             User newUser = userService.createUser(firstName, lastName, email, address, phoneNumber);
             communicationService.sendRegistrationEmail(newUser);
+            walletService.getWallet(newUser.getId());
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
             model.addAttribute("error", "Couldn't register user!");
@@ -86,11 +94,15 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<User> getUserDetails(@ModelAttribute User user) {
+    public ResponseEntity<Map<String, Object>> getUserDetails(@ModelAttribute User user) {
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
-        return ResponseEntity.ok(user);
+        Wallet wallet = walletService.getWallet(user.getId());
+        Map<String, Object> wrapper = new LinkedHashMap<>();
+        wrapper.put("user", user);
+        wrapper.put("balance", wallet.getBalance());
+        return ResponseEntity.ok(wrapper);
 //        return ResponseEntity.ok(new User(1, "qwe", "qwe", "eqw", "eqw ", "eqw"));
     }
 }
