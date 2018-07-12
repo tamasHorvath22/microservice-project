@@ -51,13 +51,20 @@
                     <figure class="effect-sadie">
                         <img th:src="${present.getImageUrl()}" alt="Image" class="img-fluid">
                         <figcaption>
-                            <h2 th:text="${present.getName()}">Name</h2>
+                            <h2 th:text="${present.getName()} + ${present.getId()}">Name</h2>
                             <p th:text="${present.getDescription()}">Description</p>
                         </figcaption>
                     </figure>
                 </div>
             </div>
+            <div class="row mb-5">
+                <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
+                    <a href="/order" class="tm-bg-pink tm-text-white tm-buy">Buy</a>
+                    <a href="/" class="tm-bg-blue tm-text-white tm-buy">Home</a>
+                </div>
+            </div>
         </div>
+
 
         <footer class="row">
             <div class="col-xl-12">
