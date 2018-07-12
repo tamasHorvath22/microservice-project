@@ -5,6 +5,8 @@ import com.codecool.microservices.model.User;
 import com.codecool.microservices.service.CommunicationService;
 import com.codecool.microservices.service.UserService;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,9 +34,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/login")
-    public String displayLogin(@ModelAttribute("user") User user, Model model){
-        if (user != null && user.loggedIn()){
-        }
+    public String displayLogin(@ModelAttribute("user") User user, Model model) {
+        System.out.println(user);
+        user = new User(1, "l", "v", "4", "5", "g");
         model.addAttribute("user", user);
         return loginHTML;
     }
@@ -84,5 +86,14 @@ public class UserController {
             model.addAttribute("user", user);
         }
         return loginHTML;
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<User> getUserDetails(@ModelAttribute User user) {
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
+        return ResponseEntity.ok(user);
+//        return ResponseEntity.ok(new User(1, "qwe", "qwe", "eqw", "eqw ", "eqw"));
     }
 }
