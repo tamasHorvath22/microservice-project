@@ -2,7 +2,7 @@ var wishlistContaner = $(".wishlist-container");
 
 $(document).ready(function () {
     $(".wishlist-button").click(function () {
-        $.get("/wishlist", function (presents) {
+        $.get("wishlist", function (presents) {
             wishlistContaner.empty();
             console.log(presents);
             drawWishes(presents);

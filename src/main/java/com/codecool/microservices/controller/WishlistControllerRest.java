@@ -19,7 +19,7 @@ public class WishlistControllerRest {
     WishlistService wishlistService;
 
     @GetMapping("/wishlist")
-    public ResponseEntity<List<Present>> getUserWishlist(@ModelAttribute("user") User user) {
+    public ResponseEntity<List<Present>> getUserWishlist() {
         //List<Present> presents = wishlistService.getPresentsByUserId(user.getId());
         List<Present> presents = wishlistService.getPresentsByUserId(5L);
         return new ResponseEntity<>(presents, HttpStatus.OK);
