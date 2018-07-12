@@ -111,4 +111,22 @@ public class PresentDao {
         }
         return presents;
     }
+
+    public Present getPresentById(long id) {
+        String stringId = "" + id;
+        getPresentJson(stringId);
+        return createPresentFromJson();
+    }
+
+    private Present createPresentFromJson() {
+        return new Present((Long) presentJSON.get("id"),
+                                      (String) presentJSON.get("name"),
+                                      (String) presentJSON.get("description"),
+                                      (Double) presentJSON.get("price"),
+                                      (String) presentJSON.get("category"),
+                                      (Boolean) presentJSON.get("available"),
+                                      (Integer) presentJSON.get("userId"),
+                                      (String) presentJSON.get("imageUrl"),
+                                      (Date) presentJSON.get("creation"));
+    }
 }
