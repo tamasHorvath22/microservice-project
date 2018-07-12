@@ -55,6 +55,7 @@ public class PaymentController {
             }
             model.addAttribute("presentList", presentList);
             model.addAttribute("sumPrice", sumPrice);
+            model.addAttribute("user", user);
             return "payment";
         } else {
             return "redirect:/login";

@@ -128,7 +128,7 @@
             </div>
             <div class="row mb-5">
                 <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                    <form th:if="${itemsInCart}" action="/order" method="POST">
+                    <form th:if="${itemsInCart}" action="/payment" method="GET">
                     <!--<form action="/payment">-->
                         <button class="tm-bg-pink tm-text-white tm-buy">Buy</button>
                     </form>
