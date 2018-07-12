@@ -13,22 +13,22 @@ import java.util.List;
 
 @RestController
 //@SessionAttributes({"user"})
-public class WishlistController {
+public class WishlistControllerRest {
 
     @Autowired
     WishlistService wishlistService;
 
-    @Autowired
-    WishlistDao wishlistDao;
-
     @GetMapping("/wishlist")
     public ResponseEntity<List<Present>> getUserWishlist(@ModelAttribute("user") User user) {
         //List<Present> presents = wishlistService.getPresentsByUserId(user.getId());
-        List<Present> presents = wishlistService.getPresentsByUserId(1L);
-        System.out.println(wishlistDao.getWishlist(5));
+        List<Present> presents = wishlistService.getPresentsByUserId(5L);
         return new ResponseEntity<>(presents, HttpStatus.OK);
     }
 
-
-
+    @PostMapping("/wishlist/remove")
+    public ResponseEntity getUserWishlist(@RequestParam("presentId") long presentId) {
+        wishlistService.removePresent(5L, presentId);
+        System.out.println("trying to remove present: " + presentId);
+        return new ResponseEntity<>("ok", HttpStatus.OK);
+    }
 }

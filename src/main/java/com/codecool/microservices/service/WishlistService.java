@@ -6,7 +6,9 @@ import com.codecool.microservices.model.Present;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,15 +18,31 @@ public class WishlistService {
     WishlistDao wishlistDao;
 
     @Autowired
-    PresentDao presentDao;
+    PresentService presentService;
 
     public List<Present> getPresentsByUserId(long userId) {
-        //List<Long> presentIds = wishlistDao.getWishlist(userId);
+        List<Long> presentIds = wishlistDao.getWishlist(userId);
         List<Present> presents = new ArrayList<>();
-        presents.add(new Present(1, "vmi", 15D, "https://lifeasahuman.com/files/2015/06/Jan-crab.jpg", "ebfvesrdvaesd"));
-        presents.add(new Present(2, "vmi2", 15D, "https://lifeasahuman.com/files/2015/06/Jan-crab.jpg", "ebfvesrdvaesd"));
-        presents.add(new Present(4, "vmi3", 15D, "https://lifeasahuman.com/files/2015/06/Jan-crab.jpg", "ebfvesrdvaesd"));
-        presents.add(new Present(3, "vmi4", 15D, "https://lifeasahuman.com/files/2015/06/Jan-crab.jpg", "ebfvesrdvaesd"));
+        for (long presentId: presentIds) {
+            try {
+                presents.add(presentService.getPresent(presentId));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+/*        List<Present> presents = new ArrayList<>();
+        presents.add(new Present(1, "termék", "ez egy termék kecske", 15D, "állat",true, 5,
+                "http://ocdn.eu/pulscms-transforms/1/maRktkqTURBXy9jMmUxNTU1YTRjZjU5N2E5YzQ4NTQ3MzE1ZmVhMmU1ZS5qcGVnkpUDAgDNCEPNBKWTBc0DFM0BvA",
+                new Date()));
+        presents.add(new Present(2, "termék", "ez egy termék kecske", 15D, "állat",true, 5,
+                "http://ocdn.eu/pulscms-transforms/1/maRktkqTURBXy9jMmUxNTU1YTRjZjU5N2E5YzQ4NTQ3MzE1ZmVhMmU1ZS5qcGVnkpUDAgDNCEPNBKWTBc0DFM0BvA",
+                new Date()));
+        presents.add(new Present(3, "termék", "ez egy termék kecske", 15D, "állat",true, 5,
+                "http://ocdn.eu/pulscms-transforms/1/maRktkqTURBXy9jMmUxNTU1YTRjZjU5N2E5YzQ4NTQ3MzE1ZmVhMmU1ZS5qcGVnkpUDAgDNCEPNBKWTBc0DFM0BvA",
+                new Date()));
+        presents.add(new Present(4, "termék", "ez egy termék kecske", 15D, "állat",true, 5,
+                "http://ocdn.eu/pulscms-transforms/1/maRktkqTURBXy9jMmUxNTU1YTRjZjU5N2E5YzQ4NTQ3MzE1ZmVhMmU1ZS5qcGVnkpUDAgDNCEPNBKWTBc0DFM0BvA",
+                new Date()));*/
         return presents;
     }
 

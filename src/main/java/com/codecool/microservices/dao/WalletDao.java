@@ -1,4 +1,3 @@
-/*
 package com.codecool.microservices.dao;
 
 import com.codecool.microservices.model.Wallet;
@@ -77,4 +76,3 @@ public class WalletDao {
                             Double.valueOf(walletJson.get("balance").toString()));
     }
 }
-*/

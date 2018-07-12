@@ -314,7 +314,8 @@ figure.effect-sadie:hover p {
 .tm-buy {
     font-weight: 400;
     width: 100%;
-    padding: 20px 45px;
+    padding: 20px;
+    height: 90px;
 }
 
 .tm-bg-blue.tm-buy:hover,
@@ -881,8 +882,13 @@ iframe { max-width: 100%; }
 
 .wishlist-container img {
     width: 100px;
+    height: 100px;
 }
 
 .tm-description-box {
     width: 450px;
+}
+
+.media {
+    display: inline-block!important;
 }
