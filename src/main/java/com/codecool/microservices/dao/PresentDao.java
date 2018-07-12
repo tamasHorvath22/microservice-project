@@ -100,7 +100,7 @@ public class PresentDao {
         List<Present> presents = new ArrayList<>();
         DateFormat format = new SimpleDateFormat("YYYY-mm-dd");
         try{
-            String route = urlParser.getUserRoute() + "user/" + id;
+            String route = urlParser.getPresentRoute() + "user/" + id;
             JSONObject response = jsonUtil.readJsonFromUrl(route );
             JSONArray jsonArray = (JSONArray)response.get("presents");
             for (int i = 0; i < jsonArray.length(); i++) {
