@@ -1,7 +1,5 @@
 package com.codecool.microservices.model;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,16 +10,7 @@ public class Order {
     private Long userId;
     private Date timestamp;
     private List<Present> order = new ArrayList<>();
-    private List<Integer> presentIds = new ArrayList<>();
-
-    public Order(){}
-
-    public Order(List<Integer> presentIds, Long id, Long userId, Date timestamp) {
-        this.id = id;
-        this.userId = userId;
-        this.timestamp = timestamp;
-        this.presentIds = presentIds;
-    }
+    private List<Long> presentIds = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -39,11 +28,21 @@ public class Order {
         return order;
     }
 
+    public Order() {
+    }
+
+    public Order(List<Long> presentIds, Long id, Long userId, Date timestamp) {
+        this.id = id;
+        this.userId = userId;
+        this.timestamp = timestamp;
+        this.presentIds = presentIds;
+    }
+
     public void setOrder(List<Present> order) {
         this.order = order;
     }
 
-    public void addToOrder(Present present){
+    public void addToOrder(Present present) {
         order.add(present);
     }
 
@@ -59,11 +58,11 @@ public class Order {
         this.timestamp = timestamp;
     }
 
-    public List<Integer> getPresentIds() {
+    public List<Long> getPresentIds() {
         return presentIds;
     }
 
-    public void setPresentIds(List<Integer> presentIds) {
+    public void setPresentIds(List<Long> presentIds) {
         this.presentIds = presentIds;
     }
 }

@@ -1,13 +1,15 @@
 package com.codecool.microservices.utility;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UrlParser {
 
-    @Autowired
     private JsonUtil jsonUtil;
+
+    public UrlParser(JsonUtil jsonUtil) {
+        this.jsonUtil = jsonUtil;
+    }
 
     public JsonUtil getJsonUtil() {
         return jsonUtil;
