@@ -8,8 +8,7 @@ orderdom = {
         let orderButton = document.getElementById("order-button");
         orderButton.addEventListener("click", function () {
             $.get("/order", function (orders) {
-                console.log(orders);
-                console.log(orderContainer);
+                orderContainer.innerHTML = "";
                 orderdom.drawWishes(orders);
             });
         })

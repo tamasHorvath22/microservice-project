@@ -85,10 +85,9 @@ public class UserController {
 
     @PostMapping("/user")
     public ResponseEntity<User> getUserDetails(@ModelAttribute User user) {
-//        if (user == null) {
-//            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-//        }
-        return ResponseEntity.ok(new User(1, "ads", "ysolt", "omg", "da", "31213"));
-        //FIXME        return ResponseEntity.ok(user);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
+        return ResponseEntity.ok(user);
     }
 }
