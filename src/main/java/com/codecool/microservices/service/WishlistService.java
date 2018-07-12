@@ -33,19 +33,6 @@ public class WishlistService {
                 e.printStackTrace();
             }
         }
-/*        List<Present> presents = new ArrayList<>();
-        presents.add(new Present(1, "termék", "ez egy termék kecske", 15D, "állat",true, 5,
-                "http://ocdn.eu/pulscms-transforms/1/maRktkqTURBXy9jMmUxNTU1YTRjZjU5N2E5YzQ4NTQ3MzE1ZmVhMmU1ZS5qcGVnkpUDAgDNCEPNBKWTBc0DFM0BvA",
-                new Date()));
-        presents.add(new Present(2, "termék", "ez egy termék kecske", 15D, "állat",true, 5,
-                "http://ocdn.eu/pulscms-transforms/1/maRktkqTURBXy9jMmUxNTU1YTRjZjU5N2E5YzQ4NTQ3MzE1ZmVhMmU1ZS5qcGVnkpUDAgDNCEPNBKWTBc0DFM0BvA",
-                new Date()));
-        presents.add(new Present(3, "termék", "ez egy termék kecske", 15D, "állat",true, 5,
-                "http://ocdn.eu/pulscms-transforms/1/maRktkqTURBXy9jMmUxNTU1YTRjZjU5N2E5YzQ4NTQ3MzE1ZmVhMmU1ZS5qcGVnkpUDAgDNCEPNBKWTBc0DFM0BvA",
-                new Date()));
-        presents.add(new Present(4, "termék", "ez egy termék kecske", 15D, "állat",true, 5,
-                "http://ocdn.eu/pulscms-transforms/1/maRktkqTURBXy9jMmUxNTU1YTRjZjU5N2E5YzQ4NTQ3MzE1ZmVhMmU1ZS5qcGVnkpUDAgDNCEPNBKWTBc0DFM0BvA",
-                new Date()));*/
         return presents;
     }
 

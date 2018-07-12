@@ -17,7 +17,7 @@ function drawWishes(presents) {
             "<div class=\"col-xl-12\">\n" +
             "<div class=\"media-boxes\">\n" +
             "<div class=\"media\">\n" +
-            "<div class=\"media-body tm-bg-gray\">\n" +
+            "<div class=\"media-body tm-bg-gray a-wish\">\n" +
             "<img src=" + presents[i].imageUrl + " alt=\"Image\" class=\"mr-3\">\n" +
             "<div class=\"tm-description-box\">\n" +
             "<h5 class=\"tm-text-blue\">" + presents[i].name + "</h5>\n" +
@@ -26,7 +26,7 @@ function drawWishes(presents) {
             "<div class=\"tm-buy-box\">\n" +
             "<button id="+ presents[i].id +" class=\"tm-bg-blue tm-text-white tm-buy add-to-cart\">Add to cart</button>\n" +
             "<button id="+ presents[i].id +" class=\"tm-bg-blue tm-text-white tm-buy delete-from-wishes\">Remove</button>\n" +
-            "</div></div></div></div></div></div>")
+            "</div></div></div></div></div></div></div>")
     }
     addToCart();
 }

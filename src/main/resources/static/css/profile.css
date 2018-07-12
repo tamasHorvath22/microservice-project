@@ -311,14 +311,6 @@ figure.effect-sadie:hover p {
     width: 140px;
 }
 
-.tm-buy {
-    font-weight: 400;
-    width: 100%;
-    padding: 20px 40px;
-    padding: 20px;
-    height: 90px;
-}
-
 .tm-bg-blue.tm-buy:hover,
 .tm-bg-blue.tm-buy:focus {
     color: white;
@@ -338,7 +330,7 @@ figure.effect-sadie:hover p {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     font-size: 1.2rem;
     font-weight: 400;
 }
@@ -884,9 +876,33 @@ iframe { max-width: 100%; }
 .wishlist-container img {
     width: 100px;
     height: 100px;
-    margin-top: 40px;
 }
 
 .tm-description-box {
     width: 450px;
+}
+
+.media {
+    display: inline-block!important;
+    margin-bottom: 10px;
+    /*background-color: #eaeaea!important;*/
+}
+
+/*.mb-5 {
+    background-color: #eaeaea!important;
+}*/
+
+.tm-buy {
+    font-weight: 400;
+    width: 100%;
+    padding: 10px;
+    border: none;
+}
+
+.tm-bg-gray {
+    background-color: #eaeaea;
+}
+
+.a-wish {
+    background-color: #f5f3f3;
 }
