@@ -80,7 +80,7 @@ public class JsonUtil {
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type",
-                    "application/json");
+                    "application/x-www-form-urlencoded");
 
             connection.setRequestProperty("Content-Length",
                     Integer.toString(urlParameters.getBytes().length));

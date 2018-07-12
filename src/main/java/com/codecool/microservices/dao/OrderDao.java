@@ -62,7 +62,7 @@ public class OrderDao {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             String json = objectMapper.writeValueAsString(cart);
-            jsonUtil.sendPostRequest(urlParser.getOrderRoute(), json);
+            jsonUtil.sendPostRequestForPresents(urlParser.getOrderRoute(), json);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
