@@ -3,7 +3,6 @@ package com.codecool.microservices.dao;
 import com.codecool.microservices.model.Order;
 import com.codecool.microservices.model.Present;
 import com.codecool.microservices.model.User;
-import com.codecool.microservices.utility.JsonUtil;
 import com.codecool.microservices.utility.UrlParser;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,12 @@ public class CommunicationDao {
     @Autowired
     private UrlParser urlParser;
 
-    public void sendRegistrationMail(User user, String urlParameter) {
+    public void sendRegistrationMail(User user) {
         try{
+            String apiRoute = "registration";
             JSONObject userJson = createUserJsonObject(user);
 
-            urlParser.getJsonUtil().sendPostRequestForPresents(urlParser.getCommunicationRoute() + urlParameter, userJson.toString());
+            urlParser.getJsonUtil().sendPostRequestForPresents(urlParser.getCommunicationRoute() + apiRoute, userJson.toString());
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -30,6 +30,7 @@ public class CommunicationDao {
 
     public void sendPurchaseMail(User user, Order order) {
         try{
+            String apiRoute = "purchase";
             JSONObject userJson = createUserJsonObject(user);
             JSONObject orderJson = createOrderObject(order);
             JSONObject parametersObject = new JSONObject();
@@ -37,7 +38,7 @@ public class CommunicationDao {
             parametersObject.put("user", userJson);
             parametersObject.put("order", orderJson);
 
-            urlParser.getJsonUtil().sendPostRequestForPresents(urlParser.getCommunicationRoute() + "purchase", parametersObject.toString());
+            urlParser.getJsonUtil().sendPostRequestForPresents(urlParser.getCommunicationRoute() + apiRoute, parametersObject.toString());
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -46,6 +47,7 @@ public class CommunicationDao {
 
     public void sendSoldEmail(User buyer, List<User> sellers, List<Present> presents) {
         try {
+            String apiRoute = "sold";
             JSONObject buyerJsonObject = createUserJsonObject(buyer);
             List<JSONObject> sellersList = new ArrayList<>();
             for (User seller : sellers) {
@@ -61,7 +63,7 @@ public class CommunicationDao {
             parametersObject.put("sellers", sellersList);
             parametersObject.put("presents", presentJsonList);
 
-            urlParser.getJsonUtil().sendPostRequestForPresents(urlParser.getCommunicationRoute() + "sold", parametersObject.toString());
+            urlParser.getJsonUtil().sendPostRequestForPresents(urlParser.getCommunicationRoute() + apiRoute, parametersObject.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
