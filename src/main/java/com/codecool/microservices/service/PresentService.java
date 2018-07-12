@@ -39,4 +39,8 @@ public class PresentService {
     public List<Present> getPresentsByUserId(long id){
         return presentDao.getAllPresentById(id);
     }
+
+    public List<Present> getFourRandomPresents() throws ParseException {
+        return presentDao.getFourRandomPresents("");
+    }
 }

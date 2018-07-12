@@ -5,13 +5,11 @@ import com.codecool.microservices.utility.JsonUtil;
 import com.codecool.microservices.utility.UrlParser;
 import com.google.gson.Gson;
 import org.json.JSONArray;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,7 +51,10 @@ public class PresentDao {
             int len = jsonArray.length();
             for (int i = 0; i < len; i++) {
                 presentJSON = (JSONObject) jsonArray.get(i);
-                list.add(makePresentFromJson());
+                Present newPresent = makePresentFromJson();
+                if(newPresent.isAvailable()){
+                    list.add(newPresent);
+                }
             }
         }
         return list;
@@ -76,8 +77,7 @@ public class PresentDao {
         newPresent.put("price", present.getPrice());
         newPresent.put("userId", present.getOwnerId());
 
-        String urlParameters =
-                "" + newPresent.toString();
+        String urlParameters = newPresent.toString();
         jsonUtil.sendPostRequestForPresents(urlParser.getPresentRoute() + route, urlParameters);
     }
 
@@ -110,6 +110,23 @@ public class PresentDao {
             ex.printStackTrace();
         }
         return presents;
+    }
+
+    public List<Present> getFourRandomPresents(String route) {
+        getPresentJson(route);
+        List<Present> list = new ArrayList<>();
+        JSONArray jsonArray = (JSONArray) presentJSON.get("presents");
+        if (jsonArray != null) {
+            int len = jsonArray.length();
+            for (int i = 0; i < len; i++) {
+                presentJSON = (JSONObject) jsonArray.get(i);
+                if(len > 4){
+                    list.add(makePresentFromJson());
+                }
+            }
+            Collections.shuffle(list);
+        }
+        return list.subList(1, 5);
     }
 
     public Present getPresentById(long id) {
