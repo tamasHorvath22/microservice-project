@@ -19,7 +19,7 @@ public class WalletService {
         return walletDao.getWallet(id);
     }
 
-    public void deposit(long userId, int amount) {
+    public void deposit(long userId, double amount) {
         walletDao.deposit(userId, amount);
     }
 
