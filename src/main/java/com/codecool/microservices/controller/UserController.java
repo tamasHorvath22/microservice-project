@@ -70,6 +70,8 @@ public class UserController {
         password = BCrypt.hashpw(password, BCrypt.gensalt());
         try {
             userService.registration(email, password, firstName, lastName, address, phoneNumber);
+            User newUser = userService.createUser(firstName, lastName, email, address, phoneNumber);
+            communicationService.sendRegistrationEmail(newUser);
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
             model.addAttribute("error", "Couldn't register user!");
