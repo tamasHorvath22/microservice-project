@@ -4,6 +4,6 @@
   "ewalletroute": "www.kaki.hu/",
   "cartroute": "https://cart-wishlist-vhs.herokuapp.com/cart",
   "presentroute": "https://present-wishlist-poop.herokuapp.com/present/",
-  "communicationroute": "www.kaki.hu/",
+  "communicationroute": "http://192.168.160.70:8080/",
   "userroute": "https://shitwish-user-service.herokuapp.com/"
 }

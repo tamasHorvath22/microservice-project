@@ -5,7 +5,6 @@ import com.codecool.microservices.utility.JsonUtil;
 import com.codecool.microservices.utility.UrlParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -15,11 +14,14 @@ import java.util.List;
 @Component
 public class CartDao {
 
-    @Autowired
     private UrlParser urlParser;
-    @Autowired
     private JsonUtil jsonUtil;
     private JSONObject cartJSON;
+
+    public CartDao(UrlParser urlParser, JsonUtil jsonUtil) {
+        this.urlParser = urlParser;
+        this.jsonUtil = jsonUtil;
+    }
 
     private void getCartJson(String parameters) {
         try {

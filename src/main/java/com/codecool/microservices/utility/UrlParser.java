@@ -15,6 +15,10 @@ public class UrlParser {
         urls = jsonUtil.getJson(configPath);
     }
 
+    public JsonUtil getJsonUtil() {
+        return jsonUtil;
+    }
+
     public String getWishlistRoute(){
         return (String)urls.get("wishlistroute");
     }

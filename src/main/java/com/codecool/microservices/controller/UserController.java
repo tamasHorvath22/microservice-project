@@ -74,7 +74,7 @@ public class UserController {
             ex.printStackTrace();
             model.addAttribute("error", "Couldn't register user!");
         }
-        return loginHTML;
+        return "redirect:/login";
     }
 
     @GetMapping(value = "/logout")

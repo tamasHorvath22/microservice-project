@@ -33,6 +33,7 @@ a:hover, a:focus, a.active {
     background-size: cover;
     background-position: center center;
     color: white;
+    text-shadow: 1px 1px #2f2f2f;
     max-height: 700px;
     min-height: 400px;
 }
@@ -51,6 +52,8 @@ a:hover, a:focus, a.active {
 .tm-site-description {
     font-size: 1.6rem;
     color: white;
+    text-shadow: 1px 1px #2f2f2f;
+    font-weight: bold;
 }
 
 .navbar-expand-sm .navbar-nav .nav-link { padding: 10px 20px; }
@@ -283,7 +286,7 @@ figure.effect-sadie:hover p {
 
 .tm-font-300 { font-weight: 300; }
 .tm-text-gray, .tm-link-gray { color: #666666; }
-.tm-text-white { color: #fff; }
+.tm-text-white { color: #ffffff; }
 .tm-text-blue { color: #6e9ece; }
 .tm-text-blue-dark { color: #006699; }
 .tm-text-pink { color: #D6688F; }
@@ -301,7 +304,10 @@ figure.effect-sadie:hover p {
 }
 
 .media { margin-bottom: 35px; }
-.media-body { display: flex; }
+.media-body {
+    display: flex;
+    min-height: 150px;
+}
 
 .tm-buy-box {
     display: flex;
@@ -309,8 +315,12 @@ figure.effect-sadie:hover p {
     align-items: center;
     justify-content: space-between;
     width: 140px;
+    margin-left: 16px;
 }
 
+.mr-3 {
+    max-height: 150px;
+}
 .tm-buy {
     font-weight: 400;
     width: 100%;
