@@ -30,7 +30,9 @@ public class CartController {
     public String showCart(@SessionAttribute("user") User user, Model model) {
         long userId = user.getId();
         List<Present> presents = cartService.getPresentsInCart(cartService.getCart(userId));
-        walletService.createWallet(userId);
+        if(walletService.getWallet(userId) == null) {
+            walletService.createWallet(userId);
+        }
         model.addAttribute("presents", presents);
         model.addAttribute("sumPrice", cartService.getCartSumPrice(presents));
         return CART_PAGE;

@@ -15,8 +15,8 @@ public class WalletService {
         walletDao.createWallet(id);
     }
 
-    public void getWallet(long id) {
-        walletDao.getWallet(id);
+    public Wallet getWallet(long id) {
+        return walletDao.getWallet(id);
     }
 
     public void deposit(long userId, int amount) {

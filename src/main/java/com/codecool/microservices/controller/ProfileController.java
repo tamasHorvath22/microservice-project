@@ -16,7 +16,10 @@ public class ProfileController {
     private WalletService walletService;
 
     @GetMapping("/profile")
-    public String profileView() {
+    public String profileView(@SessionAttribute User user) {
+        if(walletService.getWallet(user.getId()) == null) {
+            walletService.createWallet(user.getId());
+        }
         return "profile";
     }
 

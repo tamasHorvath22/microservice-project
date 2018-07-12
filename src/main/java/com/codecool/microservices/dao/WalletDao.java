@@ -23,10 +23,6 @@ public class WalletDao {
     @Autowired
     private JsonUtil jsonUtil;
 
-    public Wallet getWallet() {
-        return wallet;
-    }
-
     public void createWallet(long userId) {
         try{
             String urlParameters =
@@ -38,13 +34,15 @@ public class WalletDao {
         }
     }
 
-    public void getWallet(long userId) {
+    public Wallet getWallet(long userId) {
         try {
             walletJson = jsonUtil.readJsonFromUrl(urlParser.getEwalletRoute() + userId);
             createWalletObject();
+            return wallet;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public void deposit(long userId, int amount) {
