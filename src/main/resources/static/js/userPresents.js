@@ -2,7 +2,6 @@ var userPresentsContainer = $(".userPresents-container");
 $(document).ready(function () {
     $("#userPresents-button").click(function () {
         $.get("getPresents", function (presents) {
-            console.log("édes istenem miért");
             userPresentsContainer.empty();
             listUserPresents(presents);
         });
