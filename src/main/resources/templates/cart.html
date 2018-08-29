@@ -36,25 +36,77 @@
 
     <div class="tm-main">
 
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="tm-tag-line">
-                        <h2 class="tm-tag-line-title">Cart</h2>
+        <div class="tm-welcome-section">
+            <div class="container tm-navbar-container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <nav class="navbar navbar-expand-sm">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a href="/logout" class="nav-link tm-nav-link tm-text-white">Logout</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/cart" class="nav-link tm-nav-link tm-text-white active">Cart</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a href="/" class="nav-link tm-nav-link tm-text-white">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/addNewPresent" class="nav-link tm-nav-link tm-text-white">Add Present</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/profile(id=${user.getId()})}" class="nav-link tm-nav-link tm-text-white">Profile</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
 
-            <div class="row tm-albums-container grid">
-                <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col" th:each="present,iterStat : ${presents}">
-                    <figure class="effect-sadie">
-                        <img th:src="${present.getImageUrl()}" alt="Image" class="img-fluid">
-                        <figcaption>
-                            <h2 th:text="${present.getName()}">Name</h2>
-                            <p th:text="${present.getDescription()}">Description</p>
-                        </figcaption>
-                    </figure>
+            <div class="container text-center tm-welcome-container">
+                <div class="tm-welcome">
+                    <i class="fas tm-fa-big fa-gift tm-fa-mb-big"></i>
+                    <h1 class="text-uppercase mb-3 tm-site-name">SHITWISH</h1>
+                    <!--<p class="tm-site-description">Show How I Too Would Identify (with) Something Here</p>-->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="tm-search-form-container">
+                <form action="index.html" method="GET" class="form-inline tm-search-form">
+                    <div class="text-uppercase tm-new-release">Cart</div>
+                    <div class="form-group tm-search-box">
+                        <input type="text" name="keyword" class="form-control tm-search-input" placeholder="Type your keyword ...(Coming Soon)" disabled>
+                        <input type="submit" value="Search" class="form-control tm-search-submit" aria-disabled="true" disabled>
+                    </div>
+                    <div class="form-group tm-advanced-box">
+                        <p class="tm-text-white">Browse your cart</p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-xl-12">
+                    <div th:if="${itemsInCart}" class="media-boxes" th:each="present,iterStat : ${presents}">
+                        <div class="media">
+                            <img th:attr="src=${present.getImageUrl()}" alt="Image" class="mr-3">
+                            <div class="media-body tm-bg-gray">
+                                <div class="tm-description-box">
+                                    <h5 class="tm-text-blue" th:text="${present.getName()}"></h5>
+                                    <p class="mb-0" th:text="${present.getDescription()}"><a href="https://plus.google.com/+tooplate" target="_parent">Tooplate</a></p>
+                                    <p class="tm-text-blue" th:text="${present.getPrice()} + ' CC'"></p>
+                                </div>
+                            </div>
+                            <div class="tm-buy-box">
+                                <form method="post" th:action="${'/cart/remove/' + present.getId()}">
+                                    <button th:id="${'remove-button-' + present.getId()}"
+                                            class="tm-bg-blue tm-text-white tm-buy">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- media-boxes -->
                 </div>
             </div>
             <div class="row mb-5">
@@ -62,9 +114,12 @@
                     <div class="media-boxes">
                         <div class="media">
                             <div class="media-body tm-bg-gray">
-                                <div class="tm-description-box">
+                                <div th:if="${itemsInCart}"  class="tm-description-box">
                                     <h5 class="tm-text-blue">Total sum:</h5>
                                     <p class="mb-0" th:text="${sumPrice} + ' CC'">Sum</p>
+                                </div>
+                                <div th:if="${!itemsInCart}"  class="tm-description-box">
+                                    <h5 class="tm-text-blue">Your cart is empty!</h5>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +128,8 @@
             </div>
             <div class="row mb-5">
                 <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                    <form action="/payment">
+                    <form th:if="${itemsInCart}" action="/payment" method="GET">
+                    <!--<form action="/payment">-->
                         <button class="tm-bg-pink tm-text-white tm-buy">Buy</button>
                     </form>
                     <a href="/"><button class="tm-bg-blue tm-text-white tm-buy">Home</button></a>

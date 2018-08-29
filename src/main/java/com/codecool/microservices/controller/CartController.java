@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,17 +26,29 @@ public class CartController {
     private PresentService presentService;
     @Autowired
     private WalletService walletService;
+    @Autowired
+    private RestSignatureFilter restSignatureFilter;
+
 
     @GetMapping("/cart")
     public String showCart(@SessionAttribute("user") User user, Model model) {
-        long userId = user.getId();
-        List<Present> presents = cartService.getPresentsInCart(cartService.getCart(userId));
-        if(walletService.getWallet(userId) == null) {
-            walletService.createWallet(userId);
+        if (user.getId() != 0L) {
+            List<Present> presents = new ArrayList<>();
+            boolean itemsInCart = false;
+            try {
+                presents = cartService.getPresentsInCart(cartService.getCart(user.getId()));
+                model.addAttribute("sumPrice", cartService.getCartSumPrice(presents));
+                itemsInCart = true;
+            } catch (NullPointerException e) {
+                System.out.println("No item in cart");
+            }
+            model.addAttribute("presents", presents);
+            model.addAttribute("itemsInCart", itemsInCart);
+            model.addAttribute("user", user);
+            return CART_PAGE;
+        } else {
+            return "redirect:/login";
         }
-        model.addAttribute("presents", presents);
-        model.addAttribute("sumPrice", cartService.getCartSumPrice(presents));
-        return CART_PAGE;
     }
 
     @PostMapping("/cart")
@@ -43,19 +56,19 @@ public class CartController {
         long userId = user.getId();
         Present modifiedPresent = presentService.getPresent(presentId);
         modifiedPresent.setAvailable(false);
-        presentService.modifyPresent(presentId,modifiedPresent);
+        presentService.modifyPresent(presentId, modifiedPresent);
         cartService.addToCart(userId, presentId);
         return "redirect:/";
     }
 
-    @DeleteMapping("/cart")
-    public String removeFromCart(@RequestParam("presentId") long presentId, @SessionAttribute("user") User user) throws ParseException {
+    @PostMapping("/cart/remove/{presentId}")
+    public String removeFromCart(@PathVariable("presentId") long presentId, @SessionAttribute("user") User user) throws ParseException {
         long userId = user.getId();
         Present modifiedPresent = presentService.getPresent(presentId);
         modifiedPresent.setAvailable(true);
-        presentService.modifyPresent(presentId,modifiedPresent);
+        presentService.modifyPresent(presentId, modifiedPresent);
         cartService.removeFromCart(userId, presentId);
-        return CART_PAGE;
+        return "redirect:/" + CART_PAGE;
     }
 
 }

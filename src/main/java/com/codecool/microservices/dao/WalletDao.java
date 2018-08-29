@@ -24,14 +24,20 @@ public class WalletDao {
     private JsonUtil jsonUtil;
 
     public void createWallet(long userId) {
-        try{
-            String urlParameters =
-                    "userId=" + URLEncoder.encode(Long.toString(userId), "UTF-8");
-            jsonUtil.sendPostRequest(urlParser.getEwalletRoute() ,urlParameters);
-        }
-        catch (UnsupportedEncodingException ex){
-            ex.printStackTrace();
-        }
+        JSONObject sum = new JSONObject();
+        sum.put("userId", userId);
+
+        String urlParameters = sum.toString();
+
+        jsonUtil.sendPostRequestForPresents(urlParser.getEwalletRoute(), urlParameters);
+//        try{
+//            String urlParameters =
+//                    "userId=" + URLEncoder.encode(Long.toString(userId), "UTF-8");
+//            jsonUtil.sendPostRequest(urlParser.getEwalletRoute() ,urlParameters);
+//        }
+//        catch (UnsupportedEncodingException ex){
+//            ex.printStackTrace();
+//        }
     }
 
     public Wallet getWallet(long userId) {
@@ -46,15 +52,12 @@ public class WalletDao {
     }
 
     public void deposit(long userId, double amount) {
-        try{
-            String urlParameters =
-                    "userId=" + URLEncoder.encode(Long.toString(userId), "UTF-8") +
-                    "&sum=" + URLEncoder.encode(Double.toString(amount), "UTF-8");
-            jsonUtil.sendPutRequest(urlParser.getEwalletRoute(), urlParameters);
-        }
-        catch (UnsupportedEncodingException ex){
-            ex.printStackTrace();
-        }
+        JSONObject sum = new JSONObject();
+        sum.put("userId", userId);
+        sum.put("sum", amount);
+
+        String urlParameters = sum.toString();
+        jsonUtil.sendPutRequest(urlParser.getEwalletRoute() + "deposit", urlParameters);
     }
 
     public void withdraw(long userId, int amount) {

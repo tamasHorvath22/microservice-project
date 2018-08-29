@@ -1,7 +1,6 @@
 package com.codecool.microservices.controller;
 
 import com.codecool.microservices.dao.CommunicationDao;
-import com.codecool.microservices.service.CommunicationService;
 import com.codecool.microservices.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,9 +28,6 @@ public class PaymentController {
     CommunicationDao communicationDao;
 
     @Autowired
-    CommunicationService communicationService;
-
-    @Autowired
     CartService cartService;
 
     @Autowired
@@ -45,44 +41,58 @@ public class PaymentController {
 
     @GetMapping(value = "/payment")
     public String displayCart(@SessionAttribute User user, Model model) {
-        List<Present> presentList = getPresentList(user);
-        if(presentList.size() == 0) {
-            return "index";
+        //
+        if(user.getId() != 0L) {
+
+            List<Present> presentList = new ArrayList<>();
+            for (Long presentId : cartService.getCart(user.getId()).getPresentIds()) {
+                presentList.add(presentDao.getPresentById(presentId));
+            }
+
+            Double sumPrice = 0.0;
+            for (Present present : presentList) {
+                sumPrice += present.getPrice();
+            }
+            model.addAttribute("presentList", presentList);
+            model.addAttribute("sumPrice", sumPrice);
+            model.addAttribute("user", user);
+            return "payment";
+        } else {
+            return "redirect:/login";
         }
-        Double sumPrice = 0.0;
-        for (Present present : presentList) {
-            sumPrice += present.getPrice();
-        }
-        model.addAttribute("presentList", presentList);
-        model.addAttribute("sumPrice", sumPrice);
-        return "payment";
+//        List<Present> presentList = getPresentList(user);
+//        if(presentList.size() == 0) {
+//            return "index";
+//        }
+//        Double sumPrice = 0.0;
+//        for (Present present : presentList) {
+//            sumPrice += present.getPrice();
+//        }
+//        model.addAttribute("presentList", presentList);
+//        model.addAttribute("sumPrice", sumPrice);
+//        return "payment";
     }
 
-    @PostMapping(value = "/payment")
-    public String makePayment(@SessionAttribute User user) {
-        int sumPrice = countSumPrice(getPresentList(user));
-
-        walletService.withdraw(user.getId(), sumPrice);
-        List<Present> presentList = getPresentList(user);
-        for (int i = 0; i < presentList.size(); i++) {
-            walletService.deposit(presentList.get(i).getOwnerId(), presentList.get(i).getPrice());
-        }
-        return "index";
-    }
-
-    private List<Present> getPresentList(User user) {
-        List<Present> presentList = new ArrayList<>();
-        for (Long presentId : cartService.getCart(user.getId()).getPresentIds()) {
-            presentList.add(presentDao.getPresentById(presentId));
-        }
-        return presentList;
-    }
-
-    private int countSumPrice(List<Present> presentList) {
-        int sumPrice = 0;
-        for (Present present : presentList) {
-            sumPrice += present.getPrice();
-        }
-        return sumPrice;
-    }
+//    @PostMapping(value = "/payment")
+//    public String makePayment(@SessionAttribute User user) {
+//        int sumPrice = countSumPrice(getPresentList(user));
+//        walletService.withdraw(user.getId(), sumPrice);
+//        return "index";
+//    }
+//
+//    private List<Present> getPresentList(User user) {
+//        List<Present> presentList = new ArrayList<>();
+//        for (Long presentId : cartService.getCart(user.getId()).getPresentIds()) {
+//            presentList.add(presentDao.getPresentById(presentId));
+//        }
+//        return presentList;
+//    }
+//
+//    private int countSumPrice(List<Present> presentList) {
+//        int sumPrice = 0;
+//        for (Present present : presentList) {
+//            sumPrice += present.getPrice();
+//        }
+//        return sumPrice;
+//    }
 }

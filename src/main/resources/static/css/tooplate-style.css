@@ -17,8 +17,8 @@ body {
 
 a { transition: all 0.3s ease; }
 a:hover, a:focus, a.active {
-    color: #58d5ff;
     text-decoration: none;
+    color: #b45d6b;
 }
 
 .tm-welcome-section {
@@ -33,7 +33,7 @@ a:hover, a:focus, a.active {
     background-size: cover;
     background-position: center center;
     color: white;
-    text-shadow: 1px 1px #2f2f2f;
+    text-shadow: 1px 1px 3px #2f2f2f;
     max-height: 700px;
     min-height: 400px;
 }
@@ -52,7 +52,7 @@ a:hover, a:focus, a.active {
 .tm-site-description {
     font-size: 1.6rem;
     color: white;
-    text-shadow: 1px 1px #2f2f2f;
+    text-shadow: 1px 1px 3px #2f2f2f;
     font-weight: bold;
 }
 
@@ -899,4 +899,9 @@ iframe { max-width: 100%; }
 
 .tm-description-box {
     width: 450px;
+}
+
+.disabled {
+    opacity: 0.8;
+    cursor: not-allowed!important;
 }

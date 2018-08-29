@@ -23,6 +23,9 @@ function showContent(userData) {
     console.log(userData);
     let picturePlaceHolderParent = $('#user-detail-picture');
     let tabElement = $('#user-detail-tab');
+
+    tabElement.empty();
+
     let div = document.createElement("div");
     let nameHeader = document.createElement("h2");
     let ul = document.createElement("ul");

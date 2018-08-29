@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.AuthenticationException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -36,7 +37,7 @@ public class UserController {
     }
 
     @ModelAttribute("user")
-    public User setUpUser() {
+    public User setUpUser(){
         return null;
     }
 
@@ -56,12 +57,14 @@ public class UserController {
             User user = userService.login(email);
             if (BCrypt.checkpw(password, user.getPassword())) {
                 user.removePassword();
+                user.login();
                 model.addAttribute("user", user);
                 return "redirect:/";
             } else {
                 throw new AuthenticationException();
             }
         } catch (NullPointerException | AuthenticationException e) {
+            e.printStackTrace();
             System.out.println("Couldn't log in");
             return loginHTML;
         }
@@ -73,23 +76,23 @@ public class UserController {
                                @RequestParam("first_name") String firstName,
                                @RequestParam("last_name") String lastName,
                                @RequestParam("address") String address,
-                               @RequestParam("phone_number") String phoneNumber, Model model) {
+                               @RequestParam("phone_number") String phoneNumber, Model model){
         password = BCrypt.hashpw(password, BCrypt.gensalt());
         try {
             userService.registration(email, password, firstName, lastName, address, phoneNumber);
-            User newUser = userService.createUser(firstName, lastName, email, address, phoneNumber);
+            User newUser = userService.login(email);
             communicationService.sendRegistrationEmail(newUser);
-            walletService.getWallet(newUser.getId());
+            walletService.createWallet(newUser.getId());
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
             model.addAttribute("error", "Couldn't register user!");
         }
-        return "redirect:/login";
+        return loginHTML;
     }
 
     @GetMapping(value = "/logout")
-    public String logout() {
-        System.out.println(userService.getUserById(2));
+    public String logout(@ModelAttribute User user, Model model, HttpServletRequest httpServletRequest){
+        model.addAttribute("user", userService.getAnonymUser());
         return loginHTML;
     }
 

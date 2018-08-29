@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ShitWish | New Present</title>
+
+    <script rel="script" href="/js/bootsrap.min.js" defer></script>
+    <script rel="script" href="/js/jquery-3.2.1.min.js" defer></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
+    <link rel="stylesheet" href="/css/tooplate-style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Add new present</h1>
+        <form action="/addNewPresent" method="post">
+            <label for="name-input">Name</label>
+            <input type="text" name="name" id="name-input" required /> <br />
+
+            <label for="desc-input">Description</label>
+            <input type="text" name="description" id="desc-input" required /> <br />
+
+            <label for="price-input">Price (CC)</label>
+            <input type="number" min="0" max="100" name="price" id="price-input" required /> <br />
+
+            <label for="cat-input">Category</label>
+            <input type="text" name="category" id="cat-input" required /> <br />
+
+            <label for="img-input">Image</label>
+            <input type="url" name="image" id="img-input" required /> <br />
+            <br />
+            <input type="submit" name="submit" id="submit-button" value="Lick the stamp and SEND it" />
+        </form>
+        <br />
+        <a href="/" class=" tm-bg-gray tm-tab-link">Cancel</a>
+    </div>
+
+</body>
+</html>
