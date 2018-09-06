@@ -1,42 +1,276 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>ShitWish | New Present</title>-->
+
+    <!--<script rel="script" href="/js/bootsrap.min.js" defer></script>-->
+    <!--<script rel="script" href="/js/jquery-3.2.1.min.js" defer></script>-->
+
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        &lt;!&ndash; Google web font "Open Sans" &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="/css/bootstrap.min.css">                                            &lt;!&ndash; https://getbootstrap.com/ &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="/css/fontawesome-all.min.css">                                      &lt;!&ndash; Font awesome &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="/css/tooplate-style.css">-->
+<!--</head>-->
+<!--<body>-->
+
+    <!--<div class="container">-->
+        <!--<h1>Add new present</h1>-->
+        <!--<form action="/addNewPresent" method="post">-->
+            <!--<label for="name-input">Name</label>-->
+            <!--<input type="text" name="name" id="name-input" required /> <br />-->
+
+            <!--<label for="desc-input">Description</label>-->
+            <!--<input type="text" name="description" id="desc-input" required /> <br />-->
+
+            <!--<label for="price-input">Price (CC)</label>-->
+            <!--<input type="number" min="0" max="100" name="price" id="price-input" required /> <br />-->
+
+            <!--<label for="cat-input">Category</label>-->
+            <!--<input type="text" name="category" id="cat-input" required /> <br />-->
+
+            <!--<label for="img-input">Image</label>-->
+            <!--<input type="url" name="image" id="img-input" required /> <br />-->
+            <!--<br />-->
+            <!--<input type="submit" name="submit" id="submit-button" value="Lick the stamp and SEND it" />-->
+        <!--</form>-->
+        <!--<br />-->
+        <!--<a href="/" class=" tm-bg-gray tm-tab-link">Cancel</a>-->
+    <!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="UTF-8">
-    <title>ShitWish | New Present</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script rel="script" href="/js/bootsrap.min.js" defer></script>
-    <script rel="script" href="/js/jquery-3.2.1.min.js" defer></script>
+    <title>Insertion - About Page</title>
+    <!--
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
-    <link rel="stylesheet" href="/css/tooplate-style.css">
+    Template 2101 Insertion
+
+    http://www.tooplate.com/view/2101-insertion
+
+    -->
+    <!-- load CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="/css/profile.css">
+    <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="/css/fontawesome-all.min.css">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="/css/wishlist.css">
+    <!-- Templatemo style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--<link rel="stylesheet" href="/css/tooplate-style.css">-->
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous" defer></script>
+
+    <script src="/js/user_detail.js" rel="script" defer></script>
+
+    <script>
+        var renderPage = true;
+
+        if (navigator.userAgent.indexOf('MSIE') !== -1
+            || navigator.appVersion.indexOf('Trident/') > 0) {
+            /* Microsoft Internet Explorer detected in. */
+            alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+            renderPage = false;
+        }
+    </script>
+
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>Add new present</h1>
-        <form action="/addNewPresent" method="post">
-            <label for="name-input">Name</label>
-            <input type="text" name="name" id="name-input" required /> <br />
+<!-- Loader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
 
-            <label for="desc-input">Description</label>
-            <input type="text" name="description" id="desc-input" required /> <br />
+<div class="tm-main">
 
-            <label for="price-input">Price (CC)</label>
-            <input type="number" min="0" max="100" name="price" id="price-input" required /> <br />
+    <div class="tm-welcome-section">
+        <div class="container tm-navbar-container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <nav class="navbar navbar-expand-sm">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a href="/logout" class="nav-link tm-nav-link tm-text-white">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/cart" class="nav-link tm-nav-link tm-text-white">Cart</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="/" class="nav-link tm-nav-link tm-text-white">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/addNewPresent" class="nav-link tm-nav-link tm-text-white">Add Present</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link tm-nav-link tm-text-white active">Profile</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
-            <label for="cat-input">Category</label>
-            <input type="text" name="category" id="cat-input" required /> <br />
+        <div class="container text-center tm-welcome-container">
+            <div class="tm-welcome">
+                <i class="fas tm-fa-big fa-gift tm-fa-mb-big"></i>
+                <h1 class="text-uppercase mb-3 tm-site-name">SHITWISH</h1>
+                <p class="tm-site-description"></p>
+            </div>
+        </div>
 
-            <label for="img-input">Image</label>
-            <input type="url" name="image" id="img-input" required /> <br />
-            <br />
-            <input type="submit" name="submit" id="submit-button" value="Lick the stamp and SEND it" />
-        </form>
-        <br />
-        <a href="/" class=" tm-bg-gray tm-tab-link">Cancel</a>
     </div>
 
+    <div class="container">
+        <div class="tm-search-form-container">
+            <form action="index.html" method="GET" class="form-inline tm-search-form">
+                <div class="text-uppercase tm-new-release">Add new present</div>
+                <div class="form-group tm-search-box" align="right">
+                    <input type="text" name="keyword" class="form-control tm-search-input"
+                           placeholder="Type your keyword ...(Coming Soon)" disabled>
+                    <input type="submit" value="Search" class="form-control tm-search-submit" aria-disabled="true"
+                           disabled>
+                </div>
+                <div class="form-group tm-advanced-box">
+                    <p class="tm-text-white">Your shitty profile</p>
+                </div>
+            </form>
+        </div>
+
+        <div class="container">
+            <h1>Add new present</h1>
+            <form action="/addNewPresent" method="post">
+                <div class="container">
+                    <div class="justify-content-md-center">
+                        <table>
+                            <tr>
+                        <div class="row">
+                            <div class="col">
+                                <td>
+                                <label for="name-input">Name</label>
+                                </td>
+                                <td>
+                                <input type="text" name="name" id="name-input" required /> <br />
+                                </td>
+                            </div>
+                        </div>
+                            </tr>
+                            <tr>
+                        <div class="row">
+                            <div class="col">
+                                <td>
+                                <label for="desc-input">Description</label>
+                                </td>
+                                <td>
+                                <input type="text" name="description" id="desc-input" required /> <br />
+                                </td>
+                            </div>
+                        </div>
+                            </tr>
+                            <tr>
+                        <div class="row">
+                            <div class="col">
+                                <td>
+                                <label for="price-input">Price (CC)</label>
+                                </td>
+                                <td>
+                                <input type="number" min="0" name="price" id="price-input" required /> <br />
+                                </td>
+                            </div>
+                        </div>
+                            </tr>
+                            <tr>
+                        <div class="row">
+                            <div class="col">
+                                <td>
+                                <label for="cat-input">Category</label>
+                                </td>
+                                <td>
+                                <input type="text" name="category" id="cat-input" required /> <br />
+                                </td>
+                            </div>
+                        </div>
+                            </tr>
+                        <div class="row">
+                            <div class="col">
+                                <td>
+                                <label for="img-input">Image</label>
+                                </td>
+                                <td>
+                                <input type="url" name="image" id="img-input" required />
+                                </td>
+                            </div>
+                        </div>
+                        </table>
+                    <br />
+                    <button type="submit" name="submit" id="submit-button" class="btn btn-success">Lick the stamp and SEND it</button>
+                    <!--<input type="submit" name="submit" id="submit-button" value="Lick the stamp and SEND it" />-->
+                    </div>
+                    <br/>
+                    <button class="btn btn-light"><a href="/" >Cancel</a></button>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="tm-tab-content-container">
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Bottom links -->
+
+<footer class="row tm-about-row">
+    <div class="col-xl-12">
+        <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> CodeCool BP.2018
+            - Web Design: <a href="http://tooplate.com" class="tm-text-gray">Tooplate</a></p>
+    </div>
+</footer>
+</div> <!-- .container -->
+
+</div> <!-- .main -->
+
+<!-- load JS -->
+<script src="/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+<script src="/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
+<script src="/js/wishlist.js"></script>
+<script src="/js/orderlist.js"></script>
+<script src="/js/userPresents.js" defer></script>
+<script>
+
+    /* DOM is ready
+    ------------------------------------------------*/
+    $(function () {
+
+        if (renderPage) {
+            $('body').addClass('loaded');
+        }
+
+        $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
+    });
+
+</script>
 </body>
 </html>
+
